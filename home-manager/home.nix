@@ -18,18 +18,20 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
-    #utilities
+    # utilities
     firefox
-    git
-    neovim
     thunderbird
     zsh
     obsidian
     boxes
     libreoffice
     chromium
-    
-    #media
+
+    # dev
+    go
+    git
+
+    # media
     cava
     steam
     cider
@@ -84,4 +86,27 @@
   
   # Allow unfree packages (steam, obsidian, etc.)
   nixpkgs.config.allowUnfree = true;
+
+
+  programs.git = {
+    enable = true;
+    userName = "Ben Coleman";
+    userEmail = "benjamin.coleman@me.com";
+  };
+
+  programs.neovim = {
+    enable = true;
+    viAlias = true;
+    vimAlias = true;
+    extraConfig = ''
+      set number relativenumber
+      set mouse=a
+      nnoremap <F3> :NERDTreeToggle<CR>
+    '';
+    plugins = with pkgs.vimPlugins; [
+      nerdtree
+      vim-go
+      vim-nix
+    ];
+  };
 }
