@@ -21,6 +21,7 @@
       "super + {t,shift + t,s,f}" = "bspc node -t {\~tiled,\~pseudo-tiled,\~floating,\~fullscreen}";
       "super + ctrl + {m,x,y,z}" = "bspc node -g {marked,locked,sticky,private}";
 
+      "super + {_,shift + }c" = "bspc node -f {next,prev}.local";
       "super + {_,shift + }{1-9,0}" = "bspc {desktop -f,node -d} '^{1-9,10}'";
     };
   };
