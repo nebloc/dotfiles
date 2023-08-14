@@ -173,7 +173,9 @@
         width = "100%";
         height = "3%";
         radius = 0;
-        modules-center = "date";
+        modules-left = "bspwm";
+        modules-center = "xwindow";
+        modules-right = "date";
         wm-restack = "bspwm";
       };
       "module/date" = {
@@ -182,6 +184,17 @@
         date = "%d.%m.%y";
         time = "%H:%M";
         label = "%time%  %date%";
+      };
+      "module/bspwm" = {
+        type = "internal/bspwm";
+        pin-workspaces = true;
+        label-focused = "%name%";
+        label-separator = "|";
+        label-margin-left = 0;
+      };
+      "module/xwindow" = {
+        type = "internal/xwindow";
+        label = "%title:0:30:...%";
       };
     };
   };
