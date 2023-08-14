@@ -26,6 +26,7 @@
     boxes
     libreoffice
     chromium
+    nitrogen
 
     # dev
     go
@@ -122,6 +123,28 @@
       enable = true;
       plugins = ["sudo" "git"];
       theme = "robbyrussell";
+    };
+  };
+
+
+
+  xsession.windowManager.bspwm = {
+    enable = true;
+    startupPrograms = [
+      "$HOME/.config/polybar/launch.sh"
+      "nitrogen --set-scaled $HOME/Pictures/wallpaper.jpg"
+      "sxhkd"
+    ];
+    monitors = {
+      DisplayPort-1 = ["Main" "Mail" "Browse" "Code" "Games"];
+      DisplayPort-2 = ["Admin" "Messages" "Reference" "Music" "Gaming"];
+    };
+  };
+
+  services.sxhkd = {
+    enable = true;
+    keybindings = {
+      "super + alt + {q,r}" = "bspc {quit,wm -r}";
     };
   };
 }
