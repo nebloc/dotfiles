@@ -90,6 +90,7 @@
   users.users.nebloc = {
     isNormalUser = true;
     description = "Ben";
+    shell = pkgs.zsh;
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
       firefox
@@ -99,6 +100,8 @@
       git
     ];
   };
+
+  programs.zsh.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
