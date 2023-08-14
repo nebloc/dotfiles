@@ -27,10 +27,12 @@
     libreoffice
     chromium
     nitrogen
+    rofi
 
     # dev
     go
     git
+    vscode
 
     # media
     cava
@@ -134,17 +136,53 @@
       "$HOME/.config/polybar/launch.sh"
       "nitrogen --set-scaled $HOME/Pictures/wallpaper.jpg"
       "sxhkd"
+      "polybar"
     ];
     monitors = {
-      DisplayPort-1 = ["Main" "Mail" "Browse" "Code" "Games"];
-      DisplayPort-2 = ["Admin" "Messages" "Reference" "Music" "Gaming"];
+      Virtual-1 = ["Main" "Mail" "Browse" "Code" "Games"];
+      #DisplayPort-2 = ["Admin" "Messages" "Reference" "Music" "Gaming"];
     };
   };
 
   services.sxhkd = {
     enable = true;
     keybindings = {
+      "super + Return" = "kitty";
+      "super + shift + Return" = "firefox";
+      "super + @space" = "rofi -show drun";
+
+      "super + Escape" = "pkill -USR1 -x sxhkd";
+
       "super + alt + {q,r}" = "bspc {quit,wm -r}";
+      "super + q" = "bspc node -{c,k}";
+      "super + m" = "bspc desktop -l next";
+      "super + g" = "bspc node -s biggest.window";
+      "super + {t,shift, + t,s,f}" = "bspc node -t {\~tiled,\~pseudo-tiled,\~floating,\~fullscreen}";
+      "super + {_,shift + }{1-9,0}" = "bspc {desktop -f,node -d} '^{1-9,10}'";
+    };
+  };
+  
+  services.polybar = {
+    enable = true;
+    script = ''
+      polybar top &
+    '';
+    config = {
+      "bar/top" = {
+        monitor = "Virtual-1";
+        width = "100%";
+        height = "3%";
+        radius = 0;
+        modules-center = "date";
+        wm-restack = "bspwm";
+      };
+      "module/date" = {
+        type = "internal/date";
+        internal = 5;
+        date = "%d.%m.%y";
+        time = "%H:%M";
+        label = "%time%  %date%";
+      };
     };
   };
 }
