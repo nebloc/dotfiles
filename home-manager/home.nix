@@ -37,6 +37,8 @@
     nitrogen
     rofi
     pavucontrol
+    neofetch
+    killall
 
     # dev
     go
@@ -46,6 +48,7 @@
     # media
     cava
     steam
+    discord
     cider
     calibre
     vlc
@@ -150,5 +153,7 @@
       #DisplayPort-2 = ["Admin" "Messages" "Reference" "Music" "Gaming"];
     };
   };
+
+  programs.rofi.theme = "DarkBlue";
 
 }
