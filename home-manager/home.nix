@@ -23,6 +23,8 @@
   # release notes.
   home.stateVersion = "23.05"; # Please read the comment before changing.
 
+  fonts.fontconfig.enable = true;
+
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
@@ -37,7 +39,7 @@
     nitrogen
     rofi
     pavucontrol
-    neofetch
+    neofetch 
     killall
     picom
 
@@ -45,6 +47,7 @@
     go
     git
     vscode
+    (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
 
     # media
     cava
@@ -160,7 +163,7 @@
     };
   };
 
-  services.emacs.enable = true;
   programs.rofi.theme = "DarkBlue";
 
+  programs.kitty.font.name = "FiraCode Nerd Font";
 }
