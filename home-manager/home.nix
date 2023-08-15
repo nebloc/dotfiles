@@ -4,13 +4,19 @@
 
   imports =
     [ # Include the results of the hardware scan.
-      ./doom.nix
       ./polybar.nix
       ./sxhkd.nix
       ./kitty.nix
       ./rofi.nix
       ./bspwm.nix
     ];
+
+  nixpkgs = {
+    config = {
+      allowUnfree = true;
+      allowUnfreePredicate = (_: true); # workaround for github.com/nix-community/home-manager/issues/2942
+    };
+  };
 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -45,6 +51,8 @@
     picom
     tree
     tldr
+    blender
+    freecad
 
     # work
     libreoffice
@@ -110,10 +118,6 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
-  
-  # Allow unfree packages (steam, obsidian, etc.)
-  nixpkgs.config.allowUnfree = true;
-
 
   programs.git = {
     enable = true;
