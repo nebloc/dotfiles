@@ -34,9 +34,7 @@
     firefox
     thunderbird
     zsh
-    obsidian
     boxes
-    libreoffice
     chromium
     nitrogen
     rofi
@@ -44,6 +42,12 @@
     neofetch 
     killall
     picom
+    tree
+    tldr
+
+    # work
+    libreoffice
+    obsidian
 
     # dev
     go
@@ -144,24 +148,6 @@
       enable = true;
       plugins = ["sudo" "git"];
       theme = "robbyrussell";
-    };
-  };
-
-  xsession.windowManager.bspwm = {
-    enable = true;
-    startupPrograms = [
-      "nitrogen --restore"
-      "sxhkd"
-      "polybar"
-      "picom"
-      "xsetroot -cursor_name left_ptr"
-    ];
-    monitors = {
-      Virtual-1 = ["Main" "Mail" "Browse" "Code" "Games"];
-      #DisplayPort-2 = ["Admin" "Messages" "Reference" "Music" "Gaming"];
-    };
-    settings = {
-      focus_follows_pointer = true;
     };
   };
 }

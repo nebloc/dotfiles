@@ -6,25 +6,26 @@
         name = "FiraCode Nerd Font";
     };
     settings = {
-      foreground   = "#e5dfe8";
-      background   = "#1e181a";
-      cursor       = "#e5dfe8";
-      color0       = "#1e181a";
-      color8       = "#a09ca2";
-      color1       = "#E659D2";
-      color9       = "#E659D2";
-      color2       = "#A394A3";
-      color10      = "#A394A3";
-      color3       = "#D5A7B5";
-      color11      = "#D5A7B5";
-      color4       = "#B2A4D6";
-      color12      = "#B2A4D6";
-      color5       = "#D0B0DE";
-      color13      = "#D0B0DE";
-      color6       = "#D4CFEA";
-      color14      = "#D4CFEA";
-      color7       = "#e5dfe8";
-      color15      = "#e5dfe8";
+      foreground = "#cbc5c1";
+      background = "#0d161b";
+      cursor     = "#cbc5c1";
+
+      color0  = "#0d161b";
+      color8  = "#8e8987";
+      color1  = "#C1A135";
+      color9  = "#C1A135";
+      color2  = "#E5CA16";
+      color10 = "#E5CA16";
+      color3  = "#AE9E67";
+      color11 = "#AE9E67";
+      color4  = "#CDA55E";
+      color12 = "#CDA55E";
+      color5  = "#BB7088";
+      color13 = "#BB7088";
+      color6  = "#73999E";
+      color14 = "#73999E";
+      color7  = "#cbc5c1";
+      color15 = "#cbc5c1";
     };
   };
 }
