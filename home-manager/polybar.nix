@@ -4,6 +4,7 @@
   services.polybar = {
     enable = true;
     script = ''
+      killall -q polybar
       polybar top &
     '';
     config = {
