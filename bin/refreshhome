@@ -1,0 +1,3 @@
+pushd ~/dotfiles
+home-manager switch --flake .#nebloc@saph
+popd
