@@ -11,11 +11,14 @@
       "xsetroot -cursor_name left_ptr"
     ];
     monitors = {
-      Virtual-1 = ["Main" "Mail" "Browse" "Code" "Games"];
-      #Virtual-2 = ["Admin" "Messages" "Reference" "Music" "Gaming"];
+      DP-2 = ["Main" "Mail" "Browse" "Code" "Games"];
+      DP-3 = ["Admin" "Messages" "Reference" "Music" "Gaming"];
     };
     settings = {
       focus_follows_pointer = true;
     };
+    extraConfigEarly = ''
+      bspc wm --reorder-monitors DP-2 DP-3
+    '';
   };
 }
