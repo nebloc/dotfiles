@@ -138,7 +138,10 @@
     ];
   };
 
+  # Installed at route
   programs.zsh.enable = true;
+  programs.steam.enable = true;
+
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;

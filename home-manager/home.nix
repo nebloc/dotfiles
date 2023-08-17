@@ -66,7 +66,6 @@
 
     # media
     cava
-    steam
     discord
     cider
     calibre
