@@ -5,7 +5,8 @@
     enable = true;
     script = ''
       killall -q polybar
-      polybar top &
+      polybar main &
+      polybar second &
     '';
     config = {
       "colors" = {
@@ -19,8 +20,8 @@
         empty = "#8e8987";
         alert = "#bd2c40";
       };
-      "bar/top" = {
-        monitor = "Virtual-1";
+      "bar/main" = {
+        monitor = "DP-2";
         width = "100%";
         height = "30";
         fixed-center = false;
@@ -28,6 +29,33 @@
         modules-left = "bspwm";
         modules-center = "xwindow";
         modules-right = "alsa sep memory sep cpu sep date";
+        wm-restack = "bspwm";
+
+        background = "\${colors.background}";
+        foreground = "\${colors.foreground}";
+
+        line-size = 3;
+        line-border = 0;
+        line-color = "#f00";
+        border-size = 0;
+        border-color = "#00000000";
+        padding-left = 0;
+        padding-right = 0;
+        module-margin-left = 0;
+        module-margin-right = 0;
+        font-0 = "FiraCode Nerd Font:size=10;1";
+        cursor-click = "pointer";
+        cursor-scroll = "ns-resize";
+      };
+      "bar/second" = {
+        monitor = "DP-3";
+        width = "100%";
+        height = "30";
+        fixed-center = false;
+        radius = 0;
+        modules-left = "bspwm";
+        modules-center = "xwindow";
+        modules-right = "alsa sep date";
         wm-restack = "bspwm";
 
         background = "\${colors.background}";

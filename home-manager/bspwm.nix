@@ -6,7 +6,8 @@
     startupPrograms = [
       "nitrogen --restore"
       "sxhkd"
-      "polybar"
+      "polybar main"
+      "polybar second"
       "picom"
       "xsetroot -cursor_name left_ptr"
     ];
