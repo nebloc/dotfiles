@@ -19,6 +19,20 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.supportedFilesystems = [ "ntfs" ];
+
+  fileSystems."/mnt/HDD" = {
+    device = "/dev/disk/by-uuid/38E4DF3B7B58A5F4";
+    fsType = "ntfs";
+    options = [
+      "uid=1000"
+      "gid=1000"
+      "rw"
+      "user"
+      "exec"
+      "umask=000"
+    ];
+  };
 
   networking.hostName = "saph"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
