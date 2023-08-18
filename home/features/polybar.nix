@@ -26,9 +26,9 @@
         height = "30";
         fixed-center = false;
         radius = 0;
-        modules-left = "bspwm";
+        modules-left = "launcher bspwm";
         modules-center = "xwindow";
-        modules-right = "alsa sep memory sep cpu sep date";
+        modules-right = "alsa sep memory sep cpu sep date sep powermenu";
         wm-restack = "bspwm";
 
         background = "\${colors.background}";
@@ -145,6 +145,42 @@
         bar-volume-empty = "─";
         bar-volume-empty-font = 2;
         bar-volume-empty-foreground = "\${colors.foreground-alt}";
+      };
+      "module/powermenu" = {
+        type = "custom/menu";
+        expand-right = "true";
+        menu-0-0 = "\" Reboot |\"";
+        menu-0-0-exec = "\"menu-open-1\"";
+        menu-0-1 = "\" Shutdown \"";
+        menu-0-1-exec = "\"menu-open-2\"";
+
+        menu-1-0 = "\" Back |\"";
+        menu-1-0-exec = "menu-open-0";
+        menu-1-1 = "\" Reboot \"";
+        menu-1-1-exec = "systemctl reboot";
+
+        menu-2-0 = "\" Shutdown |\"";
+        menu-2-0-exec = "systemctl poweroff";
+        menu-2-1 = "\" Back \"";
+        menu-2-1-exec = "menu-open-0";
+        format = "<label-toggle><menu>";
+        label-open = "¶";
+        label-open-foreground = "\${colors.foreground}";
+        label-open-background = "\${colors.alert}";
+        label-open-padding = "1";
+        label-close = "EXIT";
+        label-close-foreground = "\${colors.secondary}";
+        label-close-padding = "1";
+      };
+      "module/launcher" = {
+        type = "custom/text";
+        content = "#!";
+        content-foreground = "\${colors.foreground-alt}";
+        content-background = "\${colors.secondary}";
+        click-left = "exec rofi -show drun";
+        click-middle = "exec rofi -show drun";
+        click-right = "exec rofi -show drun";
+        content-padding = 1;
       };
       "module/sep" = {
         type = "custom/text";
