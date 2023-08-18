@@ -1,6 +1,8 @@
-{ config, pkgs, ... }:
-
 {
+  home.file = {
+    ".config/rofi/theme.rasi".source = ../etc/rofi_theme.rasi;
+    # '';
+  };
   programs.rofi = {
     enable = true;
     location = "top-left";

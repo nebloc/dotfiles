@@ -6,6 +6,10 @@
 
     home-manager.url = "github:nix-community/home-manager/release-23.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    firefox-addons = {
+      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
@@ -32,10 +36,10 @@
 
       homeConfigurations = {
         "nebloc@saph" = home-manager.lib.homeManagerConfiguration { # Main Computer
-          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          pkgs = pkgsFor.x86_64-linux;
           extraSpecialArgs = { inherit inputs outputs; };
           modules = [
-            ./home/saph
+            ./home/saph.nix
           ];
         };
       };
