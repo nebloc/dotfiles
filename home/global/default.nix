@@ -22,6 +22,9 @@
     enable = true;
     userName = "Ben Coleman";
     userEmail = "benjamin.coleman@me.com";
+    extraConfig = {
+      init.defaultBranch = "main";
+    };
   };
 
 
