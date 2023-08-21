@@ -124,7 +124,7 @@
     isNormalUser = true;
     description = "Ben";
     shell = pkgs.zsh;
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
     packages = with pkgs; [
     ];
   };
@@ -132,6 +132,8 @@
   # Installed at route
   programs.zsh.enable = true;
   programs.steam.enable = true;
+
+  virtualisation.docker.enable = true;
 
 
   # Allow unfree packages
@@ -145,7 +147,11 @@
     firefox
     git
     kitty
+    protonvpn-gui
+    protonvpn-cli
   ];
+
+  programs.nm-applet.enable = true;
 
 
   # This value determines the NixOS release from which the default
