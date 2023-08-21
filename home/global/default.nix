@@ -13,6 +13,9 @@
     sessionVariables = {
       EDITOR = "nvim";
     };
+    sessionPath = [
+      "$HOME/dotfiles/bin"
+    ];
   };
 
   # Let Home Manager install and manage itself.
