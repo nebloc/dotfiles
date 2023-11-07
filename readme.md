@@ -22,3 +22,4 @@ Command
 ```bash
 home-manager switch --flake .#username@hostname
 ```
+https://unix.stackexchange.com/questions/597788/how-to-add-windows-10-from-another-nvme-drive-to-systemd-boot-loader-entries
