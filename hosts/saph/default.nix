@@ -147,6 +147,8 @@
     firefox
     git
     kitty
+    bitwarden
+    protonmail-bridge
     protonvpn-gui
     protonvpn-cli
   ];
