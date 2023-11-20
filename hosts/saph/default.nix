@@ -80,15 +80,15 @@
       };
       xrandrHeads = [
         {
-          output = "DP-3";
+          output = "DP-2";
           monitorConfig = ''
           Option "PreferredMode" "2560x1440"
           Option "Rotate" "left"
-          Option "LeftOf" "DP-2"
+          Option "LeftOf" "DP-1"
           '';
         }
         {
-          output = "DP-2";
+          output = "DP-1";
           primary = true;
           monitorConfig = ''
           Option "PreferredMode" "2560x1440"

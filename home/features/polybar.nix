@@ -21,7 +21,7 @@
         alert = "#bd2c40";
       };
       "bar/main" = {
-        monitor = "DP-2";
+        monitor = "DP-1";
         width = "100%";
         height = "30";
         fixed-center = false;
@@ -48,7 +48,7 @@
         cursor-scroll = "ns-resize";
       };
       "bar/second" = {
-        monitor = "DP-3";
+        monitor = "DP-2";
         width = "100%";
         height = "30";
         fixed-center = false;
