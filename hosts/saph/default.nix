@@ -4,12 +4,6 @@
        ./hardware-configuration.nix
     ];   
 
-    # System
-  system.autoUpgrade = {
-    enable = true;
-    channel = "https://nixos.org/channels/nixos-23.05";
-  };
-
   nix = {
     settings.auto-optimise-store = true;
     gc = {
@@ -71,8 +65,9 @@
   #Desktop Env
   services = {
     xserver = {
+      wacom.enable = true;
       enable = true;
-      layout = "gb";
+      layout = "us";
       xkbVariant = "";
       displayManager = {
         gdm.enable = true;
@@ -142,6 +137,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    xclip
     thunderbird
     neovim
     firefox
@@ -151,6 +147,7 @@
     protonmail-bridge
     protonvpn-gui
     protonvpn-cli
+    ripgrep
   ];
 
   programs.nm-applet.enable = true;
