@@ -10,6 +10,13 @@
     ];
 
 
+  nixpkgs = {
+    config = {
+      allowUnfree = true;
+      permittedInsecurePackages = [ "electron-24.8.6" ]; # For Obsidian
+    };
+  };
+
   home.stateVersion = "23.05"; # Please read the comment before changing.
 
   fonts.fontconfig.enable = true;
@@ -30,15 +37,19 @@
     tldr
     blender
     freecad
+    signal-desktop
+
 
     # work
     libreoffice
     obsidian
+    slack
 
     # dev
     go
     git
     vscode
+    azuredatastudio
     (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
 
     # media
