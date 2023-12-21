@@ -13,6 +13,7 @@
     monitors = {
       DP-1 = ["Main" "Mail" "Browse" "Code" "Games"];
       DP-2 = ["Admin" "Messages" "Reference" "Music" "Gaming"];
+      eDP-1 = ["Main" "Mail" "Browse" "Code" "Reference"];
     };
     settings = {
       focus_follows_pointer = true;
@@ -40,6 +41,9 @@
       };
       "Cider" = {
         desktop = "Music";
+      };
+      "Bitwarden" = {
+        state = "floating";
       };
     };
   };

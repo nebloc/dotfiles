@@ -6,18 +6,11 @@
     [ 
       ./global
       ./common
-      ./saph/polybar.nix
+      ./francesca/polybar.nix
     ];
 
 
-  nixpkgs = {
-    config = {
-      allowUnfree = true;
-      permittedInsecurePackages = [ "electron-24.8.6" ]; # For Obsidian
-    };
-  };
-
-  home.stateVersion = "23.05"; # Please read the comment before changing.
+  home.stateVersion = "23.11"; # Please read the comment before changing.
 
   fonts.fontconfig.enable = true;
 
@@ -35,22 +28,18 @@
     picom
     tree
     tldr
-    blender
     freecad
-    signal-desktop
-
 
     # work
     libreoffice
     obsidian
-    slack
 
     # dev
     go
     git
     vscode
-    azuredatastudio
     (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
+    azuredatastudio
 
     # media
     cava
@@ -60,10 +49,10 @@
     vlc
   ];
 
-  #  ------   -----------
-  # | DP   | |  DP 2     |
-  # |  3   | |           |
-  # |      |  -----------
-  #  ------
+  #   -----------
+  #  |   eDP-1   |
+  #  |           |
+  #   -----------
+  #
   # TODO: Add monitor config
 }
