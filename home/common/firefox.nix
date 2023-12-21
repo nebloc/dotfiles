@@ -8,9 +8,9 @@ in
       enable = true;
       profiles.nebloc = {
         extensions = with addons; [
-          # lastpass-password-manager
           privacy-badger
           multi-account-containers
+          bitwarden
         ];
         settings = {
           "browser.startup.homepage" = "duckduckgo.com";
