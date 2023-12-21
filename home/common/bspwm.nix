@@ -35,6 +35,9 @@
       "Pavucontrol" = {
         state = "floating";
       };
+      ".protonvpn-wrapped" = {
+        state = "floating";
+      };
       "Cider" = {
         desktop = "Music";
       };
