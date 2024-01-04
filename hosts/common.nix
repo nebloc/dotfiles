@@ -1,4 +1,4 @@
-{pkgs, inputs, ...}: 
+{pkgs, inputs, outputs, ...}: 
 let
   rebuild-system = pkgs.writeScriptBin "rebuild-system" (builtins.readFile ../bin/refreshos);
   rebuild-home = pkgs.writeScriptBin "rebuild-home" (builtins.readFile ../bin/refreshhome);
@@ -22,6 +22,15 @@ in
       experimental-features = nix-command flakes
     '';
   };
+
+    # Allow unfree packages
+  nixpkgs = {
+    config.allowUnfree = true;
+    overlays = [
+      outputs.overlays.unstable-packages
+    ];
+  };
+
 
   # Set your time zone.
   time.timeZone = "Europe/London";
@@ -51,7 +60,7 @@ in
     kitty
     bitwarden
     protonmail-bridge
-    protonvpn-gui
+    unstable.protonvpn-gui
     protonvpn-cli
     xtitle
     usbutils 
