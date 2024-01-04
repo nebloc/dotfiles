@@ -54,7 +54,10 @@ in
     protonvpn-gui
     protonvpn-cli
     xtitle
-    usbutils
+    usbutils 
+
+    libnotify
+
     rebuild-home
     rebuild-system
   ];

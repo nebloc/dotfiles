@@ -6,5 +6,6 @@
         ./rofi.nix
         ./sxhkd.nix
         ./zsh.nix
+        ./dunst.nix
     ];
 }
