@@ -71,7 +71,7 @@
       xkbVariant = "";
       displayManager = {
         gdm.enable = true;
-	defaultSession = "none+bspwm";
+	      defaultSession = "none+bspwm";
       };
       xrandrHeads = [
         {
