@@ -12,6 +12,8 @@
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelParams = [ "amdgpu.backlight=0" ];
 
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/fcae83fe-6ab0-4347-9ffc-a8554ae2ca61";

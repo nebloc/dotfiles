@@ -162,9 +162,9 @@
         adaptor = "ACAD";
         poll-interval = 5;
 
-        format-charging = "󰂄 %percentage%";
-        format-discharging = "󰁿 %percentage%";
-        format-low = "󰁿 %percentage%";
+        label-charging = "󰂄 %percentage%%";
+        label-discharging = "󰁿 %percentage%%";
+        label-low = "󰁿 %percentage%";
       };
       "module/sep" = {
         type = "custom/text";

@@ -30,9 +30,15 @@
     tldr
     freecad
 
+    # social
+    signal-desktop
+    element-desktop
+    discord
+
     # work
     libreoffice
     obsidian
+    blanket
 
     # dev
     go
@@ -40,14 +46,18 @@
     vscode
     (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
     azuredatastudio
+    kubectl
 
     # media
     cava
-    discord
     cider
     calibre
     vlc
   ];
+
+  home.shellAliases = {
+    k = "kubectl";
+  };
 
   #   -----------
   #  |   eDP-1   |

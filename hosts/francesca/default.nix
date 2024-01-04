@@ -1,4 +1,4 @@
-{pkgs, inputs, ...}: {
+{pkgs, inputs, lib, ...}: {
 
     imports = [
        ./hardware-configuration.nix
@@ -12,6 +12,9 @@
   networking = {
     hostName = "francesca"; # Define your hostname.
     networkmanager.enable = true;
+    firewall.allowedTCPPorts = [
+      3000
+    ];
   };
   
   #Desktop Env
@@ -28,6 +31,16 @@
       windowManager = {
         bspwm.enable = true;
       };
+    };
+    tailscale.enable = true;
+    k3s.enable = false;
+    k3s.role = "server";
+
+    fwupd.enable = true;
+    fprintd = {
+      enable = lib.mkDefault true;
+      tod.enable = true;
+      tod.driver = pkgs.libfprint-2-tod1-goodix;
     };
   };
 
@@ -51,22 +64,21 @@
   users.users.nebloc = {
     isNormalUser = true;
     description = "Ben";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "video" ];
     packages = with pkgs; [
     ];
   };
 
-  # Installed at route
-  programs.zsh.enable = true;
-  programs.steam.enable = true;
-
   virtualisation.docker.enable = true;
-
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
   programs.nm-applet.enable = true;
+
+
+  # Control brightness in bspwm 
+  programs.light.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

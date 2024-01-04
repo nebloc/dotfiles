@@ -13,7 +13,7 @@
     monitors = {
       DP-1 = ["Main" "Mail" "Browse" "Code" "Games"];
       DP-2 = ["Admin" "Messages" "Reference" "Music" "Gaming"];
-      eDP-1 = ["Main" "Mail" "Browse" "Code" "Reference"];
+      eDP-1 = ["Main" "Mail" "Browse" "Code" "Reference" "Admin" "Messages" "Music" ];
     };
     settings = {
       focus_follows_pointer = true;

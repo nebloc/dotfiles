@@ -42,6 +42,15 @@
       "super + alt + shift + {h,j,k,l}" =           "bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}";
       # TODO: Clashing with move operation above... Need to work out why
       #"super + {Left,Down,Up,Right}" =              "bspc node -v {-20 0,0 20,0 -20,20 0}";
+      # Brightness
+      "XF86MonBrightness{Down,Up}" =                "light {-U 5,-A 5}";
+      # Sound
+      "XF86Audio{LowerVolume,RaiseVolume}" =        "wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 2%{-,+}";
+      "XF86AudioMute" =                             "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
+      "super + h" =                                 "bspc node --flag hidden=on";
+      "super + shift + h" =                         ''
+        nodes=( $(bspc query -N -n .hidden) ) && s=$(xtitle ''${nodes[@]} | rofi -show -dmenu -format i) && [[ -n "$s" ]] && bspc node "''${nodes[$s]}" -n focused -g hidden=off -f
+        '';
     };
   };
 }

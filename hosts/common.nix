@@ -48,5 +48,8 @@
     protonmail-bridge
     protonvpn-gui
     protonvpn-cli
+    xtitle
+    usbutils
   ];
+  programs.starship.enable = true;
 }
