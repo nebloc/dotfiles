@@ -1,4 +1,9 @@
-{pkgs, inputs, ...}: {
+{pkgs, inputs, ...}: 
+let
+  rebuild-system = pkgs.writeScriptBin "rebuild-system" (builtins.readFile ../bin/refreshos);
+  rebuild-home = pkgs.writeScriptBin "rebuild-home" (builtins.readFile ../bin/refreshhome);
+in
+{
 
   nix = {
     settings = {
@@ -50,6 +55,8 @@
     protonvpn-cli
     xtitle
     usbutils
+    rebuild-home
+    rebuild-system
   ];
   programs.starship.enable = true;
 }
