@@ -5,22 +5,6 @@
     ../common.nix
   ];   
 
-  nix = {
-    settings.auto-optimise-store = true;
-    gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 7d";
-    };
-  
-    # Flake
-    package = pkgs.nixFlakes;
-    extraOptions = ''
-      experimental-features = nix-command flakes
-    '';
-  };
-
-  
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -130,10 +114,6 @@
   programs.steam.enable = true;
 
   virtualisation.docker.enable = true;
-
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
 
   programs.nm-applet.enable = true;
 
