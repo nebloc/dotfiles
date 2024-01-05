@@ -53,6 +53,7 @@
         nodes=( $(bspc query -N -n .hidden) ) && s=$(xtitle "''${nodes[@]}" | rofi -show -dmenu -format i) 
         [[ -n "$s" ]] && bspc node "''${nodes[$s]}" -n focused -g hidden=off -f
         '';
+      "Print" =                                     "flameshot gui";
     };
   };
 }

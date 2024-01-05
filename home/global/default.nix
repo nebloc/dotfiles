@@ -47,4 +47,17 @@
       vim-nix
     ];
   };
+
+  services = {
+    flameshot.enable = true;
+    redshift = {
+      enable = true;
+      latitude = 50.7183;
+      longitude = -1.8743;
+      temperature = {
+        day = 6500;
+        night = 4500;
+      };
+    };
+  };
 }
