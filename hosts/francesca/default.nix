@@ -25,7 +25,7 @@
       xkbVariant = "";
       displayManager = {
         gdm.enable = true;
-	defaultSession = "none+bspwm";
+	      defaultSession = "none+bspwm";
       };
       desktopManager.gnome.enable = true;
       windowManager = {
