@@ -1,8 +1,9 @@
 {pkgs, inputs, ...}: {
 
-    imports = [
-       ./hardware-configuration.nix
-    ];   
+  imports = [
+    ./hardware-configuration.nix
+    ../common.nix
+  ];   
 
   nix = {
     settings.auto-optimise-store = true;
@@ -133,22 +134,6 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    xclip
-    thunderbird
-    neovim
-    firefox
-    git
-    kitty
-    bitwarden
-    protonmail-bridge
-    protonvpn-gui
-    protonvpn-cli
-    ripgrep
-  ];
 
   programs.nm-applet.enable = true;
 
