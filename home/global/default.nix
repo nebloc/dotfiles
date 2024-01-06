@@ -56,7 +56,7 @@
       longitude = -1.8743;
       temperature = {
         day = 6500;
-        night = 4500;
+        night = 2400;
       };
     };
   };
