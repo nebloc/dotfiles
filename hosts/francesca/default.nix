@@ -45,6 +45,11 @@
       tod.enable = true;
       tod.driver = pkgs.libfprint-2-tod1-goodix;
     };
+
+    picom = {
+      enable = true;
+      vSync = true;
+    };
   };
 
   services.sshd.enable = true;

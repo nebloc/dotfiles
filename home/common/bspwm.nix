@@ -6,9 +6,7 @@
       "sxhkd"
       "polybar main"
       "polybar second"
-      "picom"
       "xsetroot -cursor_name left_ptr"
-      "thunderbird"
     ];
     monitors = {
       DP-1 = ["Main" "Mail" "Browse" "Code" "Games"];

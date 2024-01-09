@@ -25,7 +25,6 @@
     pavucontrol
     neofetch 
     killall
-    picom
     tree
     tldr
     freecad
