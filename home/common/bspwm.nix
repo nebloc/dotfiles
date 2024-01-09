@@ -45,6 +45,9 @@
       "Bitwarden" = {
         state = "floating";
       };
+      ".protonvpn-app-wrapped" = {
+        state = "floating";
+      };
     };
   };
 }
