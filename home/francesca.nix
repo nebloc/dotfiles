@@ -52,6 +52,7 @@
     cider
     calibre
     vlc
+    gnome.cheese
   ];
 
   home.shellAliases = {

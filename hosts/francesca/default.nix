@@ -23,11 +23,19 @@
       enable = true;
       layout = "us";
       xkbVariant = "";
+      xrandrHeads = [
+        {
+          output = "eDP-1";
+          monitorConfig = ''
+          Option "PreferredMode" "2256x1504"
+          '';
+        }
+      ];
       displayManager = {
         gdm.enable = true;
 	      defaultSession = "none+bspwm";
       };
-      desktopManager.gnome.enable = true;
+      # desktopManager.gnome.enable = true;
       windowManager = {
         bspwm.enable = true;
       };

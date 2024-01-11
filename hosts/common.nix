@@ -60,15 +60,21 @@ in
     git
     kitty
     bitwarden
+    cinnamon.nemo
+
+    # Proton
     protonmail-bridge
     unstable.protonvpn-gui
     protonvpn-cli
-    xtitle
-    usbutils 
-    ripgrep
 
-    libnotify
+    # Tools
+    xtitle # needed to display xwindow names
+    usbutils # lsusb tools
+    ripgrep # better grep
 
+    libnotify # with dunst for notifications
+
+    # Scripts to rebuild from nix configs
     rebuild-home
     rebuild-system
   ];
