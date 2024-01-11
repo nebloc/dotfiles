@@ -7,6 +7,7 @@
       ./global
       ./common
       ./francesca/polybar.nix
+      ./francesca/hyprland.nix
     ];
 
 
@@ -16,6 +17,7 @@
 
   home.packages = with pkgs; [
     asciiquarium
+    hyprpaper
     thunderbird
     zsh
     boxes

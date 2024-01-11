@@ -53,7 +53,7 @@ in
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    # Starter
+    # Always need
     thunderbird
     neovim
     firefox
