@@ -6,6 +6,10 @@
       allowUnfreePredicate = (_:true);
       permittedInsecurePackages = [ "electron-25.9.0" ]; # For obsidian
     };
+    overlays = [
+      outputs.overlays.unstable-packages
+      outputs.overlays.modifications
+    ];
   };
 
   home = {
