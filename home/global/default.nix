@@ -9,22 +9,19 @@
     overlays = [
       outputs.overlays.unstable-packages
       outputs.overlays.modifications
-    ];
-  };
-
-  home = {
-    username = "nebloc";
-    homeDirectory = "/home/nebloc";
-    sessionVariables = {
-      EDITOR = "nvim";
-    };
-    sessionPath = [
-      "$HOME/dotfiles/bin"
+      outputs.overlays.additions
     ];
   };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+
+
+  home = {
+    username = "nebloc";
+    homeDirectory = "/home/nebloc";
+  };
+
 
   programs.git = {
     enable = true;
