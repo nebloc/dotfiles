@@ -4,8 +4,7 @@
     startupPrograms = [
       "nitrogen --restore"
       "sxhkd"
-      "polybar main"
-      "polybar second"
+      "sleep 1;polybar main" # TODO make this a systemd target fix
       "xsetroot -cursor_name left_ptr"
     ];
     monitors = {
