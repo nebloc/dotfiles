@@ -31,6 +31,10 @@
           '';
         }
       ];
+      libinput = {
+        enable = true;
+        touchpad.naturalScrolling = true;
+      };
       displayManager = {
         gdm.enable = true;
 	      defaultSession = "none+bspwm";
