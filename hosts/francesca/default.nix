@@ -62,6 +62,8 @@
       enable = true;
       vSync = true;
     };
+
+    gnome.gnome-keyring.enable = true;
   };
 
   services.sshd.enable = true;
@@ -99,6 +101,24 @@
 
   # Control brightness in bspwm 
   programs.light.enable = true;
+
+  security.polkit.enable = true;
+  systemd = {
+    user.services.polkit-gnome-authentication-agent-1 = {
+      description = "polkit-gnome-authentication-agent-1";
+      wantedBy = [ "graphical-session.target" ];
+      wants = [ "graphical-session.target" ];
+      after = [ "graphical-session.target" ];
+      serviceConfig = {
+        Type = "simple";
+        ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+        Restart = "on-failure";
+        RestartSec = 1;
+        TimeoutStopSec = 10;
+      };
+    };
+  };
+
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
