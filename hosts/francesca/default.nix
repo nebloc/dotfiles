@@ -102,7 +102,11 @@
   # Control brightness in bspwm 
   programs.light.enable = true;
 
-  security.polkit.enable = true;
+  security = {
+    polkit.enable = true;
+    pam.services.nebloc.enableGnomeKeyring = true;
+  };
+
   systemd = {
     user.services.polkit-gnome-authentication-agent-1 = {
       description = "polkit-gnome-authentication-agent-1";
