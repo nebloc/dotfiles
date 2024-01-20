@@ -6,21 +6,22 @@
       allowUnfreePredicate = (_:true);
       permittedInsecurePackages = [ "electron-25.9.0" ]; # For obsidian
     };
-  };
-
-  home = {
-    username = "nebloc";
-    homeDirectory = "/home/nebloc";
-    sessionVariables = {
-      EDITOR = "nvim";
-    };
-    sessionPath = [
-      "$HOME/dotfiles/bin"
+    overlays = [
+      outputs.overlays.unstable-packages
+      outputs.overlays.modifications
+      outputs.overlays.additions
     ];
   };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+
+
+  home = {
+    username = "nebloc";
+    homeDirectory = "/home/nebloc";
+  };
+
 
   programs.git = {
     enable = true;

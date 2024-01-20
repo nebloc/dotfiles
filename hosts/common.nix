@@ -71,6 +71,7 @@ in
     xtitle # needed to display xwindow names
     usbutils # lsusb tools
     ripgrep # better grep
+    xclip # clipboard
 
     libnotify # with dunst for notifications
 

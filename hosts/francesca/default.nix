@@ -12,9 +12,11 @@
   networking = {
     hostName = "francesca"; # Define your hostname.
     networkmanager.enable = true;
-    firewall.allowedTCPPorts = [
-      3000
-    ];
+    firewall = {
+      allowedTCPPorts = [
+        3000
+      ];
+    };
   };
   
   programs.hyprland.enable = true;
@@ -37,11 +39,14 @@
           '';
         }
       ];
+      libinput = {
+        enable = true;
+        touchpad.naturalScrolling = true;
+      };
       displayManager = {
-        gdm.enable = true;
+        lightdm.enable = true;
         defaultSession = "none+bspwm";
       };
-      # desktopManager.gnome.enable = true;
       windowManager = {
         bspwm.enable = true;
       };
@@ -64,6 +69,8 @@
       enable = true;
       vSync = true;
     };
+
+    gnome.gnome-keyring.enable = true;
   };
 
   services.sshd.enable = true;
@@ -101,6 +108,28 @@
 
   # Control brightness in bspwm 
   programs.light.enable = true;
+
+  security = {
+    polkit.enable = true;
+    pam.services.nebloc.enableGnomeKeyring = true;
+  };
+
+  systemd = {
+    user.services.polkit-gnome-authentication-agent-1 = {
+      description = "polkit-gnome-authentication-agent-1";
+      wantedBy = [ "graphical-session.target" ];
+      wants = [ "graphical-session.target" ];
+      after = [ "graphical-session.target" ];
+      serviceConfig = {
+        Type = "simple";
+        ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+        Restart = "on-failure";
+        RestartSec = 1;
+        TimeoutStopSec = 10;
+      };
+    };
+  };
+
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

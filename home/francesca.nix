@@ -46,8 +46,9 @@
     git
     vscode
     (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
-    azuredatastudio
+    azuredatastudio_local
     kubectl
+    dotnet-sdk_8
 
     # media
     cava
@@ -57,10 +58,16 @@
     gnome.cheese
   ];
 
-  home.shellAliases = {
-    k = "kubectl";
+  programs.bash = {
+    enable = true;
+    sessionVariables = {
+      EDITOR = "nvim";
+      DOTNET_ROOT = "${pkgs.dotnet-sdk_8}";
+    };
+    shellAliases = {
+      k = "kubectl";
+    };
   };
-
   #   -----------
   #  |   eDP-1   |
   #  |           |

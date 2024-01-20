@@ -3,6 +3,10 @@
 {
   services.polybar = {
     enable = true;
+    package = pkgs.polybar.override {
+      alsaSupport = true;
+      pulseSupport = true;
+    };
     script = ''
       killall -q polybar
       polybar main &
@@ -27,7 +31,7 @@
         radius = 0;
         modules-left = "launcher bspwm";
         modules-center = "xwindow";
-        modules-right = "battery sep alsa sep memory sep cpu sep date sep powermenu";
+        modules-right = "battery sep pulseaudio sep memory sep cpu sep date sep powermenu";
         wm-restack = "bspwm";
 
         background = "\${colors.background}";
@@ -91,8 +95,8 @@
         format-underline = "#4bffdc";
         label = "%gb_used%";
       };
-      "module/alsa" = {
-        type = "internal/alsa";
+      "module/pulseaudio" = {
+        type = "internal/pulseaudio";
 
         format-volume = "<label-volume> <bar-volume>";
         label-volume = " %percentage%%";
