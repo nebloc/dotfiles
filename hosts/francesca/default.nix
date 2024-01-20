@@ -12,9 +12,11 @@
   networking = {
     hostName = "francesca"; # Define your hostname.
     networkmanager.enable = true;
-    firewall.allowedTCPPorts = [
-      3000
-    ];
+    firewall = {
+      allowedTCPPorts = [
+        3000
+      ];
+    };
   };
   
   #Desktop Env
@@ -36,10 +38,9 @@
         touchpad.naturalScrolling = true;
       };
       displayManager = {
-        gdm.enable = true;
-	      defaultSession = "none+bspwm";
+        lightdm.enable = true;
+        defaultSession = "none+bspwm";
       };
-      # desktopManager.gnome.enable = true;
       windowManager = {
         bspwm.enable = true;
       };
