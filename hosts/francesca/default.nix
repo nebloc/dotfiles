@@ -45,7 +45,7 @@
       };
       displayManager = {
         lightdm.enable = true;
-        defaultSession = "none+bspwm";
+        defaultSession = "hyprland";
       };
       windowManager = {
         bspwm.enable = true;
@@ -113,6 +113,19 @@
     polkit.enable = true;
     pam.services.nebloc.enableGnomeKeyring = true;
   };
+
+  location = {
+    latitude = 50.7183;
+    longitude = -1.8743;
+  };
+  
+  services.redshift = {
+      enable = true;
+      temperature = {
+        day = 6500;
+        night = 2400;
+      };
+    };
 
   systemd = {
     user.services.polkit-gnome-authentication-agent-1 = {

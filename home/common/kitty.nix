@@ -26,5 +26,8 @@
       color7  = "#cbc5c1";
       color15 = "#cbc5c1";
     };
+    keybindings = {
+      "kitty_mod+t"="new_tab_with_cwd"; # Open tabs in same folder
+    };
   };
 }

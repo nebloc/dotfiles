@@ -1,6 +1,9 @@
+# env GTK_DEBUG=interactive waybar
+{ pkgs, ... }:
 {
   programs.waybar = {
     enable = true;
+    package = pkgs.unstable.waybar;
     style = ''
     /* Gruvbox Palette */
     @define-color foreground #ebdbb2;
@@ -223,6 +226,8 @@
       mainBar = {
         margin = "0px 0px 0px 0px";
         layer = "top";
+        output = "eDP-1";
+        position = "top";
         modules-left = ["hyprland/workspaces"];
         modules-center = ["hyprland/window"];
         modules-right = ["battery" "cpu" "memory" "pulseaudio" "tray" "clock"];
@@ -244,5 +249,6 @@
          format-icons = ["󰁺  " "󰁼  " "󰁾  " "󰂀  " "󰂂  "];
       };
     };
+    systemd.enable = true;
   };
 }
