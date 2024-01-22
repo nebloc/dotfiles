@@ -10,7 +10,6 @@
     ];
 
 
-  home.stateVersion = "23.11"; # Please read the comment before changing.
 
   fonts.fontconfig.enable = true;
 
@@ -72,4 +71,5 @@
   #   -----------
   #
   # TODO: Add monitor config
+  home.stateVersion = "23.05"; # Please read the comment before changing.
 }
