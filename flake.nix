@@ -48,14 +48,14 @@
           pkgs = pkgsFor.x86_64-linux;
           extraSpecialArgs = { inherit inputs outputs; };
           modules = [
-            ./home/saph.nix
+            ./home/saph
           ];
         };
         "nebloc@francesca" = home-manager.lib.homeManagerConfiguration { # Laptop
           pkgs = pkgsFor.x86_64-linux;
           extraSpecialArgs = { inherit inputs outputs; };
           modules = [
-            ./home/francesca.nix
+            ./home/francesca
           ];
         };
       };

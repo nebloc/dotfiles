@@ -4,9 +4,9 @@
 
   imports =
     [ 
-      ./global
-      ./common
-      ./francesca/polybar.nix
+      ../common
+      ./polybar.nix
+      ./bspwm.nix
     ];
 
 

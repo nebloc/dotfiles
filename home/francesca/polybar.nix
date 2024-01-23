@@ -23,6 +23,33 @@
         empty = "#8e8987";
         alert = "#bd2c40";
       };
+      "bar/second" = {
+        monitor = "DP-4";
+        width = "100%";
+        height = "30";
+        fixed-center = false;
+        radius = 0;
+        modules-left = "launcher bspwm";
+        modules-center = "xwindow";
+        modules-right = "battery sep pulseaudio sep date";
+        wm-restack = "bspwm";
+
+        background = "\${colors.background}";
+        foreground = "\${colors.foreground}";
+
+        line-size = 3;
+        line-border = 0;
+        line-color = "#f00";
+        border-size = 0;
+        border-color = "#00000000";
+        padding-left = 0;
+        padding-right = 0;
+        module-margin-left = 0;
+        module-margin-right = 0;
+        font-0 = "FiraCode Nerd Font:size=10;1";
+        cursor-click = "pointer";
+        cursor-scroll = "ns-resize";
+      };
       "bar/main" = {
         monitor = "eDP-1";
         width = "100%";
