@@ -44,6 +44,7 @@
       windowManager = {
         bspwm.enable = true;
       };
+      wacom.enable = true;
     };
     tailscale = {
       enable = false;
