@@ -21,7 +21,7 @@
       inherit (self) outputs;
       lib = nixpkgs.lib // home-manager.lib;
       
-      systems = [ "x86_64-linux" ];
+      systems = [ "x86_64-linux" "aarch64-linux" ];
       
       forEachSystem = f: lib.genAttrs systems (sys: f pkgsFor.${sys});
       pkgsFor = nixpkgs.legacyPackages;
@@ -39,6 +39,10 @@
         };
         francesca = lib.nixosSystem { # Laptop 
           modules = [ ./hosts/francesca ];
+          specialArgs = { inherit inputs outputs; };
+        };   
+        nixcloud = lib.nixosSystem { # Hetzner server 
+          modules = [ ./hosts/nixcloud ];
           specialArgs = { inherit inputs outputs; };
         };   
       };
