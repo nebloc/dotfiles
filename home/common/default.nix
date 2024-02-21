@@ -5,6 +5,7 @@
       ./rofi.nix
       ./sxhkd.nix
       ./zsh.nix
+      ./nvim.nix
       ./dunst.nix
   ];
   nixpkgs = {
@@ -39,22 +40,6 @@
     };
   };
 
-
-  programs.neovim = {
-    enable = true;
-    viAlias = true;
-    vimAlias = true;
-    extraConfig = ''
-      set number relativenumber
-      set mouse=a
-      nnoremap <F3> :NERDTreeToggle<CR>
-    '';
-    plugins = with pkgs.vimPlugins; [
-      nerdtree
-      vim-go
-      vim-nix
-    ];
-  };
 
   services = {
     flameshot.enable = true;

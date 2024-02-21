@@ -27,6 +27,7 @@
     tree
     tldr
     freecad
+    gnome.seahorse
 
     # social
     signal-desktop
@@ -37,15 +38,29 @@
     libreoffice
     obsidian
     blanket
+    unstable.citrix_workspace
 
     # dev
-    go
+    gcc
     git
     vscode
     (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
     azuredatastudio_local
     kubectl
     dotnet-sdk_8
+    jetbrains.idea-community
+    # Scala
+    metals
+    coursier
+    sbt
+    scala_3
+    # Rust
+    rustc
+    cargo
+    # Python
+    python3
+    # Golang
+    go
 
     # media
     cava

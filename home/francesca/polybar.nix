@@ -132,6 +132,8 @@
         label-muted = " ﱝ muted";
         label-muted-foreground = "#666";
 
+        reverse-scroll = true;
+
         bar-volume-width = 10;
         bar-volume-foreground-0 = "#55aa55";
         bar-volume-foreground-1 = "#55aa55";
