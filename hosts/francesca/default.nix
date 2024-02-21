@@ -47,7 +47,7 @@
       wacom.enable = true;
     };
     tailscale = {
-      enable = false;
+      enable = true;
       useRoutingFeatures = "client";
     };
     k3s.enable = false;
