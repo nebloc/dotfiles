@@ -28,6 +28,10 @@
   home = {
     username = "nebloc";
     homeDirectory = "/home/nebloc";
+    shellAliases = {
+      vi = "nvim";
+      vim = "nvim";
+    };
   };
 
 

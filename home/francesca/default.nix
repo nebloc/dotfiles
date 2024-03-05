@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
 
@@ -46,6 +46,7 @@
     vscode
     (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
     azuredatastudio_local
+    zeal
     kubectl
     dotnet-sdk_8
     jetbrains.idea-community
@@ -69,6 +70,11 @@
     vlc
     gnome.cheese
   ];
+
+  services.nextcloud-client = {
+      enable = true;
+      startInBackground = true;
+  };
 
   programs.bash = {
     enable = true;

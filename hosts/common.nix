@@ -27,6 +27,7 @@ in
   nixpkgs = {
     config.allowUnfree = true;
     overlays = [
+      outputs.overlays.modifications
       outputs.overlays.unstable-packages
     ];
   };
