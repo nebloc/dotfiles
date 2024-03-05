@@ -38,7 +38,7 @@
         touchpad.naturalScrolling = true;
       };
       displayManager = {
-        lightdm.enable = true;
+        gdm.enable = true;
         defaultSession = "none+bspwm";
       };
       windowManager = {
