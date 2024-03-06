@@ -37,7 +37,7 @@
       extraApps = with config.services.nextcloud.package.packages.apps; {
         # List of apps we want to install and are already packaged in
         # https://github.com/NixOS/nixpkgs/blob/master/pkgs/servers/nextcloud/packages/nextcloud-apps.json
-        inherit calendar contacts notes onlyoffice tasks cookbook qownnotesapi;
+        inherit calendar contacts notes onlyoffice tasks cookbook qownnotesapi deck mail;
         };
       config = {
         overwriteProtocol = "https";
@@ -48,11 +48,6 @@
       };
       # Suggested by Nextcloud's health check.
       phpOptions."opcache.interned_strings_buffer" = "16";
-    };
-    # Nightly database backups.
-    postgresqlBackup = {
-      enable = true;
-      startAt = "*-*-* 01:15:00";
     };
   };
 }

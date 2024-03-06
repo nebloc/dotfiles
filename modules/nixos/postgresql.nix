@@ -8,5 +8,9 @@
         local all       all     trust
       '';
     };
+    postgresqlBackup = {
+      enable = true;
+      startAt = "*-*-* 01:15:00";
+    };
   };
 }

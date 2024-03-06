@@ -18,6 +18,9 @@
   networking = {
     hostName = "nixcloud";
     firewall = {
+      interfaces."tailscale0" = {
+        allowedTCPPorts = [ 22 ];
+      };
       allowedTCPPorts = [
         80
         443
@@ -30,12 +33,38 @@
   services = {
     openssh.enable = true;
     tailscale.enable = true;
+    tailscale.useRoutingFeatures = "server";
   };
 
   environment.systemPackages = with pkgs; [
     git
     neovim
+    restic
   ];
-  
+
+  systemd.timers."restic-backup" ={
+    wantedBy = [ "timers.target" ];
+    timerConfig = {
+      OnBootSec = "3m";
+      OnUnitActiveSec = "24h";
+      Unit = "restic-backup.service";
+    };
+  };
+  systemd.services."restic-backup" = {
+    script = ''
+      ${pkgs.restic}/bin/restic backup /var/backup/postgresql
+      '';
+    serviceConfig = {
+      Type = "oneshot";
+      User = "root";
+    };
+    environment = {
+      RESTIC_REPOSITORY = "gs:nextbackup:/";
+      RESTIC_PASSWORD_FILE = "/etc/restic/secret";
+      GOOGLE_PROJECT_ID = "nebloccom";
+      GOOGLE_APPLICATION_CREDENTIALS = "/etc/google/key.json";
+    };
+  };
+
   system.stateVersion = "23.11";
 }
