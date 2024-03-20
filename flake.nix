@@ -15,6 +15,8 @@
     };
 
     nixvim-flake.url = "github:nebloc/nixvim";
+
+    flox.url = "github:flox/flox";
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:

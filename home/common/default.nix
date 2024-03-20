@@ -5,7 +5,6 @@
       ./rofi.nix
       ./sxhkd.nix
       ./zsh.nix
-      ./nvim.nix
       ./dunst.nix
   ];
   nixpkgs = {

@@ -50,8 +50,10 @@
       enable = true;
       useRoutingFeatures = "client";
     };
-    k3s.enable = false;
-    k3s.role = "server";
+    k3s = {
+      enable = false;
+      role = "server";
+    };
 
     fwupd.enable = true;
     fprintd = {
