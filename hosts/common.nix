@@ -67,7 +67,7 @@ in
 
     # Proton
     protonmail-bridge
-    unstable.protonvpn-gui
+    protonvpn-gui
     protonvpn-cli
 
     # Tools

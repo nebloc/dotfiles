@@ -41,13 +41,14 @@
         gdm.enable = true;
         defaultSession = "none+bspwm";
       };
+      desktopManager.gnome.enable = true;
       windowManager = {
         bspwm.enable = true;
       };
       wacom.enable = true;
     };
     tailscale = {
-      enable = true;
+      enable = false;
       useRoutingFeatures = "client";
     };
     k3s = {

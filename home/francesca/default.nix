@@ -38,7 +38,6 @@
     libreoffice
     obsidian
     blanket
-    unstable.citrix_workspace
 
     # dev
     gcc
