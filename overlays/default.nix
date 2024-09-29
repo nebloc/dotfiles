@@ -7,7 +7,6 @@
     # ...
     # });
     neovim = inputs.nixvim-flake.packages.${final.system}.default;
-    flox = inputs.flox.packages.${final.system}.default;
   };
 
   # When applied, the unstable nixpkgs set (declared in the flake inputs) will

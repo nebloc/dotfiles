@@ -62,8 +62,6 @@
     # Golang
     go
 
-    flox
-
     # media
     cava
     cider
