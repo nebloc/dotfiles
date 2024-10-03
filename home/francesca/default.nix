@@ -5,8 +5,8 @@
   imports =
     [ 
       ../common
-      ./polybar.nix
-      ./bspwm.nix
+      # ./polybar.nix
+      # ./bspwm.nix
     ];
 
 
@@ -36,7 +36,7 @@
 
     # work
     libreoffice
-    obsidian
+    unstable.obsidian
     blanket
 
     # dev
@@ -45,6 +45,7 @@
     vscode
     (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
     azuredatastudio_local
+    dbeaver
     zeal
     kubectl
     dotnet-sdk_8
@@ -63,7 +64,7 @@
     go
 
     # media
-    cava
+    unstable.cava
     cider
     calibre
     vlc

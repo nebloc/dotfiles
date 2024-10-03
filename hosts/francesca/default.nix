@@ -39,12 +39,12 @@
       };
       displayManager = {
         gdm.enable = true;
-        defaultSession = "none+bspwm";
+        defaultSession = "gnome";
       };
       desktopManager.gnome.enable = true;
-      windowManager = {
-        bspwm.enable = true;
-      };
+      # windowManager = {
+      #   bspwm.enable = true;
+      # };
       wacom.enable = true;
     };
     tailscale = {
@@ -63,10 +63,10 @@
       tod.driver = pkgs.libfprint-2-tod1-goodix;
     };
 
-    picom = {
-      enable = true;
-      vSync = true;
-    };
+    # picom = {
+    #   enable = true;
+    #   vSync = true;
+    # };
 
     gnome.gnome-keyring.enable = true;
   };
@@ -107,26 +107,26 @@
   # Control brightness in bspwm 
   programs.light.enable = true;
 
-  security = {
-    polkit.enable = true;
-    pam.services.nebloc.enableGnomeKeyring = true;
-  };
-
-  systemd = {
-    user.services.polkit-gnome-authentication-agent-1 = {
-      description = "polkit-gnome-authentication-agent-1";
-      wantedBy = [ "graphical-session.target" ];
-      wants = [ "graphical-session.target" ];
-      after = [ "graphical-session.target" ];
-      serviceConfig = {
-        Type = "simple";
-        ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-        Restart = "on-failure";
-        RestartSec = 1;
-        TimeoutStopSec = 10;
-      };
-    };
-  };
+  # security = {
+  #   polkit.enable = true;
+  #   pam.services.nebloc.enableGnomeKeyring = true;
+  # };
+  #
+  # systemd = {
+  #   user.services.polkit-gnome-authentication-agent-1 = {
+  #     description = "polkit-gnome-authentication-agent-1";
+  #     wantedBy = [ "graphical-session.target" ];
+  #     wants = [ "graphical-session.target" ];
+  #     after = [ "graphical-session.target" ];
+  #     serviceConfig = {
+  #       Type = "simple";
+  #       ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+  #       Restart = "on-failure";
+  #       RestartSec = 1;
+  #       TimeoutStopSec = 10;
+  #     };
+  #   };
+  # };
 
 
   # This value determines the NixOS release from which the default

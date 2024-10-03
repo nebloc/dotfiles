@@ -65,8 +65,7 @@ in
 
     # Proton
     protonmail-bridge
-    protonvpn-gui
-    protonvpn-cli
+    unstable.protonvpn-gui
 
     # Tools
     xtitle # needed to display xwindow names
