@@ -1,7 +1,7 @@
 { pkgs, ...}:
 {
   imports = [
-    # ../common/waybar.nix
+    ../common/waybar.nix
   ];
   home.file.".config/hypr/hyprpaper.conf".source = ../etc/hyprpaper.conf;
   wayland.windowManager.hyprland = {

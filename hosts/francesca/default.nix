@@ -23,8 +23,10 @@
   services = {
     xserver = {
       enable = true;
-      layout = "us";
-      xkbVariant = "";
+      xkb = {
+        variant = "";
+        layout = "us";
+      };
       xrandrHeads = [
         {
           output = "eDP-1";
@@ -33,19 +35,21 @@
           '';
         }
       ];
-      libinput = {
-        enable = true;
-        touchpad.naturalScrolling = true;
-      };
       displayManager = {
         gdm.enable = true;
-        defaultSession = "gnome";
       };
       desktopManager.gnome.enable = true;
       # windowManager = {
       #   bspwm.enable = true;
       # };
       wacom.enable = true;
+    };
+    displayManager = {
+        defaultSession = "gnome";
+    };
+    libinput = {
+      enable = true;
+      touchpad.naturalScrolling = true;
     };
     tailscale = {
       enable = false;
@@ -63,13 +67,10 @@
       tod.driver = pkgs.libfprint-2-tod1-goodix;
     };
 
-    # picom = {
-    #   enable = true;
-    #   vSync = true;
-    # };
-
     gnome.gnome-keyring.enable = true;
   };
+
+  programs.hyprland.enable = true;
 
   services.sshd.enable = true;
 

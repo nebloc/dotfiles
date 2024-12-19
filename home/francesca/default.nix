@@ -5,6 +5,7 @@
   imports =
     [ 
       ../common
+      ./hyprland.nix
       # ./polybar.nix
       # ./bspwm.nix
     ];
@@ -15,7 +16,7 @@
 
   home.packages = with pkgs; [
     asciiquarium
-    thunderbird
+    # thunderbird
     zsh
     boxes
     chromium
@@ -45,7 +46,7 @@
     vscode
     (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
     azuredatastudio_local
-    dbeaver
+    dbeaver-bin
     zeal
     kubectl
     dotnet-sdk_8
@@ -84,6 +85,23 @@
     };
     shellAliases = {
       k = "kubectl";
+    };
+  };
+
+  programs.thunderbird = {
+    enable = true;
+    settings = {
+      "mailnews.default_news_sort_order" = 2;
+      "mailnews.default_sort_order" = 2;
+      "mailnews.default_sort_type" = 22;
+    };
+    profiles."main" = {
+      isDefault = true;
+      settings = {
+        "mailnews.default_news_sort_order" = 2;
+        "mailnews.default_sort_order" = 2;
+        "mailnews.default_sort_type" = 22;
+      };
     };
   };
   #   -----------
