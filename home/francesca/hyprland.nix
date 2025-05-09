@@ -16,6 +16,11 @@
       ];
       general = {
         gaps_out = 10;
+        layout = "dwindle";
+      };
+      dwindle = {
+        preserve_split = true;
+        pseudotile = true;
       };
       decoration = {
         rounding = 2;
@@ -57,17 +62,17 @@
         "$mainMod, S, togglefloating"
         "$mainMod, F, fullscreen"
         "$secondMod, F, fakefullscreen"
-        "$mainMod, T, togglesplit, # dwindle"
+        "$mainMod, T, togglesplit" # dwindle
 
         "$mainMod, left, movefocus, l"
         "$mainMod, right, movefocus, r"
         "$mainMod, up, movefocus, u"
         "$mainMod, down, movefocus, d"
 
-        "CTRL + SHIFT, left, layoutmsg, preselect l" # not working...
-        "CTRL + SHIFT, right, layoutmsg, preselect r"
-        "CTRL + SHIFT, up, layoutmsg, preselect u"
-        "CTRL + SHIFT, down, layoutmsg, preselect d"
+        "SUPER + ALT, left, layoutmsg, preselect l" # not working...
+        "SUPER + ALT, right, layoutmsg, preselect r"
+        "SUPER + ALT, up, layoutmsg, preselect u"
+        "SUPER + ALT, down, layoutmsg, preselect d"
       
         "$mainMod, 1, workspace, 1"
         "$mainMod, 2, workspace, 2"
