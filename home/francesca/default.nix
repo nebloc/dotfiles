@@ -21,7 +21,6 @@
     boxes
     chromium
     nitrogen
-    rofi
     pavucontrol
     neofetch 
     killall
@@ -45,7 +44,7 @@
     git
     vscode
     (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
-    azuredatastudio_local
+    # azuredatastudio_local
     dbeaver-bin
     zeal
     kubectl
@@ -56,6 +55,7 @@
     coursier
     sbt
     scala_3
+    jdk21
     # Rust
     rustc
     cargo

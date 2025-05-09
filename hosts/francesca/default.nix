@@ -45,7 +45,7 @@
       wacom.enable = true;
     };
     displayManager = {
-        defaultSession = "gnome";
+        defaultSession = "hyprland";
     };
     libinput = {
       enable = true;

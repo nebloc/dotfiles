@@ -10,7 +10,10 @@
       exec-once=${pkgs.hyprpaper}/bin/hyprpaper
     '';
     settings = {
-      monitor = ",highres,auto,1";
+      monitor = [
+        "eDP-1,highres,auto,1"
+        "DP-2,2560x1440,auto,1"
+      ];
       general = {
         gaps_out = 10;
       };
@@ -98,6 +101,19 @@
         # Move/resize windows with mainMod + LMB/RMB and dragging
         "$mainMod, mouse:272, movewindow"
         "$mainMod, mouse:273, resizewindow"
+      ];
+      binde = [
+        ", XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 1%+"
+        ", XF86AudioLowerVolume, exec, wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 1%-"
+        ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+      ];
+      bindl = [
+        # trigger when the switch is toggled
+        ", switch:Lid Switch, exec, swaylock"
+        # trigger when the switch is turning on
+        ", switch:on:Lid Switch, exec, hyprctl keyword monitor \"eDP-1, disable\""
+        # trigger when the switch is turning off
+        ", switch:off:Lid Switch, exec, hyprctl keyword monitor \"eDP-1,highres,auto,1\""
       ];
     };
   };

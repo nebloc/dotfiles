@@ -1,3 +1,4 @@
+{pkgs, ...}:
 {
   home.file = {
     ".config/rofi/theme.rasi".source = ../etc/rofi_theme.rasi;
@@ -12,5 +13,6 @@
         padding = 0;
     };
     theme = "./theme.rasi";
+    package = pkgs.rofi-wayland;
   };
 }
