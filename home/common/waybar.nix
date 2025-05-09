@@ -231,22 +231,23 @@
         modules-left = ["hyprland/workspaces"];
         modules-center = ["hyprland/window"];
         modules-right = ["battery" "cpu" "memory" "pulseaudio" "tray" "clock"];
-      };
-      "hyprland/workspaces" = {
-        active-only = "false";
-        on-click = "activate";
-      };
-      "battery" = {
-        states = {
-          warning = "30";
-          critical = "15";
+        "hyprland/workspaces" = {
+          active-only = "false";
+          on-click = "activate";
+          format="{name} - {id}";
         };
-         format = "{icon}{capacity}%";
-         tooltip-format = "{timeTo} {capacity}%";
-         format-charging = "󰂄{capacity}%";
-         format-plugged = " ";
-         format-alt = "{time} {icon}";
-         format-icons = ["󰁺  " "󰁼  " "󰁾  " "󰂀  " "󰂂  "];
+        "battery" = {
+          states = {
+            warning = "30";
+            critical = "15";
+          };
+           format = "{icon}{capacity}%";
+           tooltip-format = "{timeTo} {capacity}%";
+           format-charging = "󰂄 {capacity}%";
+           format-plugged = " ";
+           format-alt = "{time} {icon}";
+           format-icons = ["󰁺 " "󰁼 " "󰁾 " "󰂀 " "󰂂 "];
+        };
       };
     };
     systemd.enable = true;
