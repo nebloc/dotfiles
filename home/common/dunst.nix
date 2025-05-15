@@ -5,7 +5,7 @@
             global = {
                 frame_color = "#ffb52a";
                 origin = "top-right";
-                offset = "5x40";
+                offset = "10x10";
                 padding = 8;
                 separator_height = 2;
                 gap_size = 10;
