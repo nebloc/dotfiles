@@ -6,13 +6,10 @@
   home.file.".config/hypr/hyprpaper.conf".source = ../etc/hyprpaper.conf;
   wayland.windowManager.hyprland = {
     enable = true;
-    extraConfig = ''
-      exec-once=${pkgs.hyprpaper}/bin/hyprpaper
-    '';
     settings = {
       monitor = [
-        "eDP-1,highres,auto,1"
-        "DP-2,2560x1440,auto,1"
+        "eDP-1,highres,auto-down,1"
+        ",2560x1440,auto-up,1"
       ];
       general = {
         gaps_out = 10;
@@ -31,37 +28,30 @@
           passes = 1;
         };
 
-        drop_shadow = "yes";
-        shadow_range = 4;
-        shadow_render_power = 3;
-        "col.shadow" = "rgba(1a1a1aee)";
+        shadow = {
+          enabled = true;
+          range = 4;
+          render_power = 3;
+          color = "rgba(1a1a1aee)";
+        };
+
       };
       "$mainMod" = "SUPER";
       "$secondMod" = "SUPER + SHIFT";
-      workspace = [
-        "1,monitor:eDP-1,persistent:true"
-        "2,monitor:eDP-1,persistent:true"
-        "3,monitor:eDP-1,persistent:true"
-        "4,monitor:eDP-1,persistent:true"
-        "5,monitor:eDP-1,persistent:true"
-        "6,monitor:eDP-1,persistent:true"
-        "7,monitor:eDP-1,persistent:true"
-        "8,monitor:eDP-1,persistent:true"
-      ];
       animation = [
         "windowsMove,0" # Don't animate moving windows - it's annoying
         "windowsIn,1,1,default" # Start window creation faster
         "workspaces,1,2,default"
       ];
       bind = [
-        "$mainMod, Return, exec, kitty"
-        "$secondMod, Return, exec, firefox"
-        "$mainMod, Space, exec, rofi -show drun" #WOFI?
+        "$mainMod, Return, exec, ${pkgs.kitty}/bin/kitty"
+        "$secondMod, Return, exec, ${pkgs.firefox}/bin/firefox"
+        "$mainMod, Space, exec, ${pkgs.rofi-wayland}/bin/rofi -show drun" #WOFI?
         "$mainMod, Q, killactive, "
         "SUPER + ALT, Q, exit, "
         "$mainMod, S, togglefloating"
         "$mainMod, F, fullscreen"
-        "$secondMod, F, fakefullscreen"
+        "$secondMod, F, fullscreenstate, 0 3"
         "$mainMod, T, togglesplit" # dwindle
 
         "$mainMod, left, movefocus, l"
@@ -69,10 +59,12 @@
         "$mainMod, up, movefocus, u"
         "$mainMod, down, movefocus, d"
 
-        "SUPER + ALT, left, layoutmsg, preselect l" # not working...
+        "SUPER + ALT, left, layoutmsg, preselect l" 
         "SUPER + ALT, right, layoutmsg, preselect r"
         "SUPER + ALT, up, layoutmsg, preselect u"
         "SUPER + ALT, down, layoutmsg, preselect d"
+        "$mainMod, H, togglespecialworkspace"
+        "$secondMod, H, movetoworkspacesilent, special"
       
         "$mainMod, 1, workspace, 1"
         "$mainMod, 2, workspace, 2"
@@ -100,6 +92,8 @@
         "$secondMod, right, movewindow, r"
         "$secondMod, up, movewindow, u"
         "$secondMod, down, movewindow, d"
+
+        ", XF86AudioMute, exec, ${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
       ]; 
 
       bindm = [
@@ -108,9 +102,10 @@
         "$mainMod, mouse:273, resizewindow"
       ];
       binde = [
-        ", XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 1%+"
-        ", XF86AudioLowerVolume, exec, wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 1%-"
-        ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+        ", XF86AudioRaiseVolume, exec, ${pkgs.wireplumber}/bin/wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 1%+"
+        ", XF86AudioLowerVolume, exec, ${pkgs.wireplumber}/bin/wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 1%-"
+        ", XF86MonBrightnessUp,exec,${pkgs.brightnessctl}/bin/brightnessctl set +5%"
+        ", XF86MonBrightnessDown,exec,${pkgs.brightnessctl}/bin/brightnessctl set 5%-"
       ];
       bindl = [
         # trigger when the switch is toggled
@@ -119,6 +114,18 @@
         ", switch:on:Lid Switch, exec, hyprctl keyword monitor \"eDP-1, disable\""
         # trigger when the switch is turning off
         ", switch:off:Lid Switch, exec, hyprctl keyword monitor \"eDP-1,highres,auto,1\""
+      ];
+
+      windowrulev2 = [
+        "workspace special, title:^Bitwarden$"
+        "workspace special, title:^Proton VPN$"
+        "size 800 600, title:^Proton VPN$"
+      ];
+      exec-once = [
+        "${pkgs.hyprpaper}/bin/hyprpaper"
+        "${pkgs.bitwarden}/bin/bitwarden"
+        "${pkgs.protonvpn-gui}/bin/protonvpn-app"
+        "${pkgs.wlsunset}/bin/wlsunset -l 51.5 -L -0.1"
       ];
     };
   };
