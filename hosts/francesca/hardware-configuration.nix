@@ -14,18 +14,8 @@
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
-  fileSystems."/" =
-    { device = "/dev/disk/by-uuid/1de52e8e-3827-4c75-a01a-47911370509c";
-      fsType = "ext4";
-    };
-
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/E6EE-4226";
-      fsType = "vfat";
-    };
-
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/12207221-59bb-4f6b-83e9-22665d699468"; }
+    [ { device = "/swap/swapfile"; }
     ];
 
   hardware.bluetooth.enable = true;
