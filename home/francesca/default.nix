@@ -16,18 +16,17 @@
 
   home.packages = with pkgs; [
     asciiquarium
-    # thunderbird
     zsh
     boxes
     chromium
-    nitrogen
     pavucontrol
     neofetch 
     killall
     tree
     tldr
     freecad
-    gnome.seahorse
+    seahorse # Keychain
+    wlsunset # Nightshift
 
     # social
     signal-desktop
@@ -69,7 +68,7 @@
     cider
     calibre
     vlc
-    gnome.cheese
+    cheese
   ];
 
   services.nextcloud-client = {
