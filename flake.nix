@@ -15,9 +15,12 @@
     };
 
     nixvim-flake.url = "github:nebloc/nixvim";
+
+    disko.url = "github:nix-community/disko/latest";
+    disko.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, disko, ... }@inputs:
     let
       inherit (self) outputs;
       lib = nixpkgs.lib // home-manager.lib;
@@ -39,7 +42,7 @@
           specialArgs = { inherit inputs outputs; };
         };
         francesca = lib.nixosSystem { # Laptop 
-          modules = [ ./hosts/francesca ];
+          modules = [ ./hosts/francesca disko.nixosModules.disko ];
           specialArgs = { inherit inputs outputs; };
         };   
         nixcloud = lib.nixosSystem { # Hetzner server 
