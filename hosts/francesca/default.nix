@@ -2,12 +2,15 @@
 
     imports = [
        ./hardware-configuration.nix
+       ./disks.nix
        ../common.nix
     ];   
   
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  
+  boot.supportedFilesystems = lib.mkForce ["btrfs"];
 
   # Connectivity.
   networking = {
