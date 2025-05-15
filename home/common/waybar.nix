@@ -226,7 +226,6 @@
       mainBar = {
         margin = "0px 0px 0px 0px";
         layer = "top";
-        output = "eDP-1";
         position = "top";
         modules-left = ["hyprland/workspaces"];
         modules-center = ["hyprland/window"];
@@ -234,7 +233,7 @@
         "hyprland/workspaces" = {
           active-only = "false";
           on-click = "activate";
-          format="{name} - {id}";
+          format="{name}";
         };
         "battery" = {
           states = {
@@ -244,9 +243,34 @@
            format = "{icon}{capacity}%";
            tooltip-format = "{timeTo} {capacity}%";
            format-charging = "󰂄 {capacity}%";
-           format-plugged = " ";
+           format-plugged = " {capacity}%";
            format-alt = "{time} {icon}";
            format-icons = ["󰁺 " "󰁼 " "󰁾 " "󰂀 " "󰂂 "];
+        };
+        "cpu" = {
+          format = "󰍛 {usage}%";
+        };
+        "memory" = {
+          format = " {}";
+          };
+        "pulseaudio"= {
+          scroll-step = 1; # %, can be a float
+          format = "{volume}% {icon} {format_source}";
+          format-bluetooth = "{volume}% {icon} {format_source}";
+          format-bluetooth-muted = " {icon} {format_source}";
+          format-muted = " {format_source}";
+          format-source = "{volume}% ";
+          format-source-muted = "";
+          format-icons = {
+            headphone = "";
+            hands-free = "";
+            headset = "";
+            phone = "";
+            portable = "";
+            car = "";
+            default = ["" "" ""];
+          };
+          on-click= "pavucontrol";
         };
       };
     };
