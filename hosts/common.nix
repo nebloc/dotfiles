@@ -17,7 +17,7 @@ in
     };
   
     # Flake
-        extraOptions = ''
+    extraOptions = ''
       experimental-features = nix-command flakes
     '';
   };
