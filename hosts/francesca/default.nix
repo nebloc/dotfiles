@@ -22,26 +22,14 @@
   #Desktop Env
   services = {
     xserver = {
-      enable = true;
       xkb = {
         variant = "";
         layout = "us";
       };
-      xrandrHeads = [
-        {
-          output = "eDP-1";
-          monitorConfig = ''
-          Option "PreferredMode" "2256x1504"
-          '';
-        }
-      ];
       displayManager = {
         gdm.enable = true;
       };
       desktopManager.gnome.enable = true;
-      # windowManager = {
-      #   bspwm.enable = true;
-      # };
       wacom.enable = true;
     };
     displayManager = {
@@ -49,7 +37,7 @@
     };
     libinput = {
       enable = true;
-      touchpad.naturalScrolling = true;
+      touchpad.naturalScrolling = false;
     };
     tailscale = {
       enable = false;
@@ -62,9 +50,7 @@
 
     fwupd.enable = true;
     fprintd = {
-      enable = lib.mkDefault true;
-      tod.enable = true;
-      tod.driver = pkgs.libfprint-2-tod1-goodix;
+      enable = true;
     };
 
     gnome.gnome-keyring.enable = true;
@@ -77,8 +63,6 @@
   # Configure console keymap
   console.keyMap = "us";
 
-  # Enable sound with pipewire.
-  sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -103,31 +87,6 @@
   nixpkgs.config.allowUnfree = true;
 
   programs.nm-applet.enable = true;
-
-
-  # Control brightness in bspwm 
-  programs.light.enable = true;
-
-  # security = {
-  #   polkit.enable = true;
-  #   pam.services.nebloc.enableGnomeKeyring = true;
-  # };
-  #
-  # systemd = {
-  #   user.services.polkit-gnome-authentication-agent-1 = {
-  #     description = "polkit-gnome-authentication-agent-1";
-  #     wantedBy = [ "graphical-session.target" ];
-  #     wants = [ "graphical-session.target" ];
-  #     after = [ "graphical-session.target" ];
-  #     serviceConfig = {
-  #       Type = "simple";
-  #       ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-  #       Restart = "on-failure";
-  #       RestartSec = 1;
-  #       TimeoutStopSec = 10;
-  #     };
-  #   };
-  # };
 
 
   # This value determines the NixOS release from which the default
