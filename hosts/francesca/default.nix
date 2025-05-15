@@ -9,6 +9,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  # Connectivity.
   networking = {
     hostName = "francesca"; # Define your hostname.
     networkmanager.enable = true;
@@ -18,6 +19,7 @@
       ];
     };
   };
+  services.blueman.enable = true; # Gui for bluetooth
   
   #Desktop Env
   services = {
