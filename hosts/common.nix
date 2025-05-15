@@ -17,8 +17,7 @@ in
     };
   
     # Flake
-    package = pkgs.nixFlakes;
-    extraOptions = ''
+        extraOptions = ''
       experimental-features = nix-command flakes
     '';
   };
@@ -61,7 +60,7 @@ in
     git
     kitty
     bitwarden
-    cinnamon.nemo
+    nemo
 
     # Proton
     protonmail-bridge
