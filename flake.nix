@@ -20,14 +20,18 @@
     disko.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, home-manager, disko, ... }@inputs:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      disko,
+      ...
+    }@inputs:
     let
       inherit (self) outputs;
       lib = nixpkgs.lib // home-manager.lib;
-      
-      systems = [ "x86_64-linux" "aarch64-linux" ];
-      
-      forEachSystem = f: lib.genAttrs systems (sys: f pkgsFor.${sys});
+
       pkgsFor = nixpkgs.legacyPackages;
     in
     {
@@ -37,29 +41,43 @@
       overlays = import ./overlays { inherit inputs; };
 
       nixosConfigurations = {
-        saph = lib.nixosSystem { # Desktop
+        saph = lib.nixosSystem {
+          # Desktop
           modules = [ ./hosts/saph ];
           specialArgs = { inherit inputs outputs; };
         };
-        francesca = lib.nixosSystem { # Laptop 
-          modules = [ ./hosts/francesca disko.nixosModules.disko ];
+        francesca = lib.nixosSystem {
+          # Laptop
+          modules = [
+            ./hosts/francesca
+            disko.nixosModules.disko
+          ];
           specialArgs = { inherit inputs outputs; };
-        };   
-        nixcloud = lib.nixosSystem { # Hetzner server 
+        };
+        nixcloud = lib.nixosSystem {
+          # Hetzner server
           modules = [ ./hosts/nixcloud ];
           specialArgs = { inherit inputs outputs; };
-        };   
+        };
+        livecd = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = { inherit inputs; };
+
+          modules = [ ./hosts/livecd ];
+        };
       };
 
       homeConfigurations = {
-        "nebloc@saph" = home-manager.lib.homeManagerConfiguration { # Desktop
+        "nebloc@saph" = home-manager.lib.homeManagerConfiguration {
+          # Desktop
           pkgs = pkgsFor.x86_64-linux;
           extraSpecialArgs = { inherit inputs outputs; };
           modules = [
             ./home/saph
           ];
         };
-        "nebloc@francesca" = home-manager.lib.homeManagerConfiguration { # Laptop
+        "nebloc@francesca" = home-manager.lib.homeManagerConfiguration {
+          # Laptop
           pkgs = pkgsFor.x86_64-linux;
           extraSpecialArgs = { inherit inputs outputs; };
           modules = [
@@ -68,4 +86,4 @@
         };
       };
     };
- }
+}
