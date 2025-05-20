@@ -1,26 +1,23 @@
-{ config, pkgs, inputs, ... }:
+{
+  pkgs,
+  ...
+}:
 
 {
 
-  imports =
-    [ 
-      ../common
-      ./hyprland.nix
-      # ./polybar.nix
-      # ./bspwm.nix
-    ];
-
-
+  imports = [
+    ../common
+    ./hyprland.nix
+  ];
 
   fonts.fontconfig.enable = true;
 
   home.packages = with pkgs; [
     asciiquarium
     zsh
-    boxes
     chromium
     pavucontrol
-    neofetch 
+    neofetch
     killall
     tree
     tldr
@@ -42,26 +39,35 @@
     gcc
     git
     vscode
-    (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
-    # azuredatastudio_local
+    (nerdfonts.override {
+      fonts = [
+        "FiraCode"
+        "DroidSansMono"
+      ];
+    })
     dbeaver-bin
     zeal
     kubectl
     dotnet-sdk_8
     jetbrains.idea-community
-    # Scala
-    metals
+    #### Scala
+    unstable.metals
     coursier
     sbt
-    scala_3
+    unstable.scala
     jdk21
-    # Rust
+    #### Rust
     rustc
+    rustfmt
     cargo
-    # Python
+    #### Python
     python3
     # Golang
     go
+    #### nix
+    nixfmt-rfc-style
+    ### Lua
+    lua
 
     # media
     unstable.cava
@@ -72,8 +78,8 @@
   ];
 
   services.nextcloud-client = {
-      enable = true;
-      startInBackground = true;
+    enable = true;
+    startInBackground = true;
   };
 
   programs.bash = {

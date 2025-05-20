@@ -1,4 +1,4 @@
-{ pkgs, ...}:
+{ pkgs, ... }:
 {
   imports = [
     ../common/waybar.nix
@@ -21,7 +21,7 @@
       };
       decoration = {
         rounding = 2;
-    
+
         blur = {
           enabled = true;
           size = 3;
@@ -46,7 +46,7 @@
       bind = [
         "$mainMod, Return, exec, ${pkgs.kitty}/bin/kitty"
         "$secondMod, Return, exec, ${pkgs.firefox}/bin/firefox"
-        "$mainMod, Space, exec, ${pkgs.rofi-wayland}/bin/rofi -show drun" #WOFI?
+        "$mainMod, Space, exec, ${pkgs.rofi-wayland}/bin/rofi -show drun" # WOFI?
         "$mainMod, Q, killactive, "
         "SUPER + ALT, Q, exit, "
         "$mainMod, S, togglefloating"
@@ -59,13 +59,13 @@
         "$mainMod, up, movefocus, u"
         "$mainMod, down, movefocus, d"
 
-        "SUPER + ALT, left, layoutmsg, preselect l" 
+        "SUPER + ALT, left, layoutmsg, preselect l"
         "SUPER + ALT, right, layoutmsg, preselect r"
         "SUPER + ALT, up, layoutmsg, preselect u"
         "SUPER + ALT, down, layoutmsg, preselect d"
         "$mainMod, H, togglespecialworkspace"
         "$secondMod, H, movetoworkspacesilent, special"
-      
+
         "$mainMod, 1, workspace, 1"
         "$mainMod, 2, workspace, 2"
         "$mainMod, 3, workspace, 3"
@@ -76,7 +76,7 @@
         "$mainMod, 8, workspace, 8"
         "$mainMod, 9, workspace, 9"
         "$mainMod, 0, workspace, 10"
-      
+
         "$mainMod SHIFT, 1, movetoworkspacesilent, 1"
         "$mainMod SHIFT, 2, movetoworkspacesilent, 2"
         "$mainMod SHIFT, 3, movetoworkspacesilent, 3"
@@ -94,7 +94,7 @@
         "$secondMod, down, movewindow, d"
 
         ", XF86AudioMute, exec, ${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-      ]; 
+      ];
 
       bindm = [
         # Move/resize windows with mainMod + LMB/RMB and dragging

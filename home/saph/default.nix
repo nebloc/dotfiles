@@ -42,7 +42,6 @@
     go
     git
     vscode
-    # azuredatastudio
     (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
 
     # media

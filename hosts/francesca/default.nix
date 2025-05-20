@@ -1,16 +1,20 @@
-{pkgs, inputs, lib, ...}: {
+{
+  lib,
+  ...
+}:
+{
 
-    imports = [
-       ./hardware-configuration.nix
-       ./disks.nix
-       ../common.nix
-    ];   
-  
+  imports = [
+    ./hardware-configuration.nix
+    ./disks.nix
+    ../common.nix
+  ];
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  
-  boot.supportedFilesystems = lib.mkForce ["btrfs"];
+
+  boot.supportedFilesystems = lib.mkForce [ "btrfs" ];
 
   # Connectivity.
   networking = {
@@ -23,7 +27,7 @@
     };
   };
   services.blueman.enable = true; # Gui for bluetooth
-  
+
   #Desktop Env
   services = {
     xserver = {
@@ -38,7 +42,7 @@
       wacom.enable = true;
     };
     displayManager = {
-        defaultSession = "hyprland";
+      defaultSession = "hyprland";
     };
     libinput = {
       enable = true;
@@ -81,8 +85,11 @@
   users.users.nebloc = {
     isNormalUser = true;
     description = "Ben";
-    extraGroups = [ "networkmanager" "wheel" "docker" "video" ];
-    packages = with pkgs; [
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "docker"
+      "video"
     ];
   };
 
@@ -91,8 +98,10 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  # Needed for proton vpn
   programs.nm-applet.enable = true;
 
+  environment.sessionVariables.NIXOS_OZONE_WL = "1"; # Make electron work w/ Wayland
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

@@ -14,6 +14,7 @@ in
         ];
         settings = {
           "browser.startup.homepage" = "duckduckgo.com";
+          "full-screen-api.ignore-widgets" = true;
         };
       };
     };

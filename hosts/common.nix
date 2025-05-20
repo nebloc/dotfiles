@@ -1,28 +1,33 @@
-{pkgs, inputs, outputs, ...}: 
+{
+  pkgs,
+  outputs,
+  ...
+}:
 let
-  rebuild-system = pkgs.writeScriptBin "rebuild-system" (builtins.readFile ../bin/refreshos);
-  rebuild-home = pkgs.writeScriptBin "rebuild-home" (builtins.readFile ../bin/refreshhome);
+  rebuild-system = pkgs.writeScriptBin "rebuild-system" (builtins.readFile ../bin/rebuild-system);
+  rebuild-home = pkgs.writeScriptBin "rebuild-home" (builtins.readFile ../bin/rebuild-home);
+  build-iso = pkgs.writeScriptBin "build-iso" (builtins.readFile ../bin/build-iso);
 in
 {
 
   nix = {
     settings = {
-    	auto-optimise-store = true;
-	allowed-users = [ "nebloc" ];
+      auto-optimise-store = true;
+      allowed-users = [ "nebloc" ];
     };
     gc = {
       automatic = true;
       dates = "weekly";
       options = "--delete-older-than 7d";
     };
-  
+
     # Flake
     extraOptions = ''
       experimental-features = nix-command flakes
     '';
   };
 
-    # Allow unfree packages
+  # Allow unfree packages
   nixpkgs = {
     config.allowUnfree = true;
     overlays = [
@@ -30,7 +35,6 @@ in
       outputs.overlays.unstable-packages
     ];
   };
-
 
   # Set your time zone.
   time.timeZone = "Europe/London";
@@ -79,6 +83,7 @@ in
     # Scripts to rebuild from nix configs
     rebuild-home
     rebuild-system
+    build-iso
   ];
   programs.starship.enable = true;
 }
