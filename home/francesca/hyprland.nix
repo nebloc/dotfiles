@@ -41,7 +41,7 @@
       animation = [
         "windowsMove,0" # Don't animate moving windows - it's annoying
         "windowsIn,1,1,default" # Start window creation faster
-        "workspaces,1,2,default"
+        "workspaces,1,1,default"
       ];
       bind = [
         "$mainMod, Return, exec, ${pkgs.kitty}/bin/kitty"
