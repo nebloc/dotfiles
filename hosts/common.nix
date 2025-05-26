@@ -63,6 +63,7 @@ in
     firefox
     git
     kitty
+    ghostty
     bitwarden
     nemo
 

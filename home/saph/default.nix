@@ -4,9 +4,8 @@
 
   imports =
     [ 
-      ./global
-      ./common
-      ./saph/polybar.nix
+      ./hyprland.nix
+      ../common
     ];
 
 
@@ -21,7 +20,6 @@
     boxes
     chromium
     nitrogen
-    rofi
     pavucontrol
     neofetch 
     killall
@@ -51,6 +49,28 @@
     calibre
     vlc
   ];
+
+  services.nextcloud-client = {
+    enable = true;
+    startInBackground = true;
+  };
+
+  programs.thunderbird = {
+    enable = true;
+    settings = {
+      "mailnews.default_news_sort_order" = 2;
+      "mailnews.default_sort_order" = 2;
+      "mailnews.default_sort_type" = 22;
+    };
+    profiles."main" = {
+      isDefault = true;
+      settings = {
+        "mailnews.default_news_sort_order" = 2;
+        "mailnews.default_sort_order" = 2;
+        "mailnews.default_sort_type" = 22;
+      };
+    };
+  };
 
   #  ------   -----------
   # | DP   | |  DP 2     |

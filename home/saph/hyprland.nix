@@ -8,8 +8,8 @@
     enable = true;
     settings = {
       monitor = [
-        "eDP-1,highres,auto-down,1"
-        ",2560x1440,auto-up,1"
+        "DP-1,highres,auto,1"
+        "DP-2,highres,auto-left,1,transform,1"
       ];
       general = {
         gaps_out = 10;
@@ -44,7 +44,7 @@
         "workspaces,1,1,default"
       ];
       bind = [
-        "$mainMod, Return, exec, ${pkgs.kitty}/bin/kitty"
+        "$mainMod, Return, exec, ${pkgs.ghostty}/bin/ghostty"
         "$secondMod, Return, exec, ${pkgs.firefox}/bin/firefox"
         "$mainMod, Space, exec, ${pkgs.rofi-wayland}/bin/rofi -show drun" # WOFI?
         "$mainMod, Q, killactive, "

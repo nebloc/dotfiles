@@ -53,43 +53,23 @@
       wacom.enable = true;
       enable = true;
       layout = "us";
-      xkbVariant = "";
       displayManager = {
         gdm.enable = true;
-	      defaultSession = "none+bspwm";
       };
-      xrandrHeads = [
-        {
-          output = "DP-2";
-          monitorConfig = ''
-          Option "PreferredMode" "2560x1440"
-          Option "Rotate" "left"
-          Option "LeftOf" "DP-1"
-          '';
-        }
-        {
-          output = "DP-1";
-          primary = true;
-          monitorConfig = ''
-          Option "PreferredMode" "2560x1440"
-          Option "Rate" "143.86"
-          '';
-        }
-      ];
       desktopManager.gnome.enable = true;
-      windowManager = {
-        bspwm.enable = true;
-      };
+    };
+    displayManager = {
+      defaultSession = "hyprland";
     };
   };
 
+  programs.hyprland.enable = true;
   services.sshd.enable = true;
 
   # Configure console keymap
   console.keyMap = "uk";
 
   # Enable sound with pipewire.
-  sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -103,14 +83,14 @@
   users.users.nebloc = {
     isNormalUser = true;
     description = "Ben";
-    shell = pkgs.zsh;
+    shell = pkgs.fish;
     extraGroups = [ "networkmanager" "wheel" "docker" ];
-    packages = with pkgs; [
+    packages = [
     ];
   };
 
   # Installed at route
-  programs.zsh.enable = true;
+  programs.fish.enable = true;
   programs.steam.enable = true;
 
   virtualisation.docker.enable = true;
