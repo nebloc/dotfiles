@@ -82,17 +82,6 @@
     startInBackground = true;
   };
 
-  programs.bash = {
-    enable = true;
-    sessionVariables = {
-      EDITOR = "nvim";
-      DOTNET_ROOT = "${pkgs.dotnet-sdk_8}";
-    };
-    shellAliases = {
-      k = "kubectl";
-    };
-  };
-
   programs.thunderbird = {
     enable = true;
     settings = {

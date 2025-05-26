@@ -91,7 +91,9 @@
       "docker"
       "video"
     ];
+    shell = pkgs.fish;
   };
+  programs.fish.enable = true;
 
   virtualisation.docker.enable = true;
 

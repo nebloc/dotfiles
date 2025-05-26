@@ -4,7 +4,7 @@
       ./kitty.nix
       ./rofi.nix
       ./sxhkd.nix
-      ./zsh.nix
+      ./shell.nix
       ./dunst.nix
   ];
   nixpkgs = {
