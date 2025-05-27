@@ -1,10 +1,11 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
 
   imports =
     [ 
       ./hyprland.nix
+      ./ghostty.nix
       ../common
     ];
 
