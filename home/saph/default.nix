@@ -15,22 +15,15 @@
   fonts.fontconfig.enable = true;
 
   home.packages = with pkgs; [
-    asciiquarium
     thunderbird
     zsh
     boxes
     chromium
-    nitrogen
     pavucontrol
-    neofetch 
-    killall
-    picom
-    tree
-    tldr
     blender
     freecad
     signal-desktop
-
+    wlsunset # Nightshift
 
     # work
     libreoffice
@@ -49,6 +42,16 @@
     cider
     calibre
     vlc
+
+    # terminal tools
+    feh
+    tree
+    yazi
+    tldr
+    asciiquarium
+    ripgrep
+    fastfetch
+    killall
   ];
 
   services.nextcloud-client = {
