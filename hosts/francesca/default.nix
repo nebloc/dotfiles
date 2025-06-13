@@ -1,5 +1,6 @@
 {
   lib,
+  pkgs,
   ...
 }:
 {
@@ -90,6 +91,7 @@
       "wheel"
       "docker"
       "video"
+      "dialout"
     ];
     shell = pkgs.fish;
   };
