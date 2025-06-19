@@ -12,7 +12,7 @@
 
   home.stateVersion = "23.05"; # Please read the comment before changing.
 
-  fonts.fontconfig.enable = true;
+  # fonts.fontconfig.enable = true;
 
   home.packages = with pkgs; [
     thunderbird
@@ -34,7 +34,6 @@
     go
     git
     vscode
-    (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
 
     # media
     cava
@@ -52,6 +51,10 @@
     ripgrep
     fastfetch
     killall
+    zellij
+
+    # own tools
+    nfi
   ];
 
   services.nextcloud-client = {
@@ -75,11 +78,13 @@
       };
     };
   };
-
   #  ------   -----------
   # | DP   | |  DP 2     |
   # |  3   | |           |
   # |      |  -----------
   #  ------
   # TODO: Add monitor config
+  programs.mangohud = {
+    enable = true;
+  };
 }

@@ -7,7 +7,7 @@
       term= "xterm-256color";
       font-size= 11.0;
       font-family= "FiraCode Nerd Font";
-      theme = "kanagawa-lotus";
+      theme = "kanagawa-wave";
     };
     themes = {
       personal = {

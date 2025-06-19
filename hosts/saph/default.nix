@@ -1,4 +1,4 @@
-{pkgs, inputs, ...}: {
+{pkgs, ...}: {
 
   imports = [
     ./hardware-configuration.nix
@@ -26,6 +26,7 @@
   networking = {
     hostName = "saph"; # Define your hostname.
     networkmanager.enable = true;
+    firewall.allowedTCPPorts = [ 8080 ];
   };
   # Enable networking
 
@@ -52,7 +53,7 @@
     xserver = {
       wacom.enable = true;
       enable = true;
-      layout = "us";
+      xkb.layout = "us";
       displayManager = {
         gdm.enable = true;
       };
@@ -60,6 +61,22 @@
     };
     displayManager = {
       defaultSession = "hyprland";
+    };
+    ollama = {
+      enable = true;
+      acceleration = "rocm";
+      package = pkgs.unstable.ollama;
+    };
+    open-webui = {
+      enable = true;
+      openFirewall = true;
+      environment = {
+        ANONYMIZED_TELEMETRY = "False";
+        DO_NOT_TRACK = "True";
+        SCARF_NO_ANALYTICS = "True";
+        OLLAMA_API_BASE_URL = "http://127.0.0.1:11434/api";
+        OLLAMA_BASE_URL = "http://127.0.0.1:11434";
+      };
     };
   };
 
@@ -70,7 +87,7 @@
   console.keyMap = "uk";
 
   # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -84,7 +101,7 @@
     isNormalUser = true;
     description = "Ben";
     shell = pkgs.fish;
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "dialout"];
     packages = [
     ];
   };

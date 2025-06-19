@@ -6,6 +6,7 @@
       ./sxhkd.nix
       ./shell.nix
       ./dunst.nix
+      ./yazi.nix
   ];
   nixpkgs = {
     config = {

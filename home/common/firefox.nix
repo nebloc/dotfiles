@@ -7,7 +7,7 @@ in
     programs.firefox = {
       enable = true;
       profiles.nebloc = {
-        extensions = with addons; [
+        extensions.packages = with addons; [
           privacy-badger
           multi-account-containers
           bitwarden
