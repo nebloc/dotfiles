@@ -1,17 +1,25 @@
-{ inputs, lib, pkgs, config, outputs, ... }: {
+{
+  inputs,
+  lib,
+  pkgs,
+  config,
+  outputs,
+  ...
+}:
+{
   imports = [
-      ./firefox.nix
-      ./kitty.nix
-      ./rofi.nix
-      ./sxhkd.nix
-      ./shell.nix
-      ./dunst.nix
-      ./yazi.nix
+    ./firefox.nix
+    ./kitty.nix
+    ./rofi.nix
+    ./sxhkd.nix
+    ./shell.nix
+    ./dunst.nix
+    ./ghostty.nix
   ];
   nixpkgs = {
     config = {
       allowUnfree = true;
-      allowUnfreePredicate = (_:true);
+      allowUnfreePredicate = (_: true);
       permittedInsecurePackages = [ "electron-25.9.0" ]; # For obsidian
     };
     overlays = [
@@ -24,7 +32,6 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
-
   home = {
     username = "nebloc";
     homeDirectory = "/home/nebloc";
@@ -34,7 +41,6 @@
     };
   };
 
-
   programs.git = {
     enable = true;
     userName = "Ben Coleman";
@@ -43,7 +49,6 @@
       init.defaultBranch = "main";
     };
   };
-
 
   services = {
     flameshot.enable = true;

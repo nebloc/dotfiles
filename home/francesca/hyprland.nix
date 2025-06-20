@@ -44,7 +44,7 @@
         "workspaces,1,1,default"
       ];
       bind = [
-        "$mainMod, Return, exec, ${pkgs.kitty}/bin/kitty"
+        "$mainMod, Return, exec, ${pkgs.ghostty}/bin/ghostty"
         "$secondMod, Return, exec, ${pkgs.firefox}/bin/firefox"
         "$mainMod, Space, exec, ${pkgs.rofi-wayland}/bin/rofi -show drun" # WOFI?
         "$mainMod, Q, killactive, "

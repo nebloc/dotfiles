@@ -68,6 +68,9 @@
     nixfmt-rfc-style
     ### Lua
     lua
+    ### Zig
+    zig
+    zls
 
     # media
     unstable.cava
