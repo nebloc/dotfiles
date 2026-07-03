@@ -17,13 +17,16 @@
     zsh
     chromium
     pavucontrol
-    neofetch
     killall
     tree
     tldr
     freecad
     seahorse # Keychain
     wlsunset # Nightshift
+
+    # org
+    todoist-electron
+    todoist
 
     # social
     signal-desktop
@@ -36,26 +39,22 @@
     blanket
 
     # dev
+    direnv
     gcc
     git
     vscode
-    (nerdfonts.override {
-      fonts = [
-        "FiraCode"
-        "DroidSansMono"
-      ];
-    })
     dbeaver-bin
     zeal
     kubectl
     dotnet-sdk_8
-    jetbrains.idea-community
     #### Scala
     unstable.metals
     coursier
     sbt
     unstable.scala
     jdk21
+    #### Elixir
+    elixir
     #### Rust
     rustc
     rustfmt
@@ -65,7 +64,7 @@
     # Golang
     go
     #### nix
-    nixfmt-rfc-style
+    nixfmt
     ### Lua
     lua
     ### Zig
@@ -74,10 +73,14 @@
 
     # media
     unstable.cava
-    cider
+    # TODO: find out if cider has a replacement?
+    # cider
+    cider-2
     calibre
     vlc
     cheese
+
+    nfi
   ];
 
   services.nextcloud-client = {

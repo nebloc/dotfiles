@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   imports = [
     ../common/waybar.nix
@@ -6,127 +6,165 @@
   home.file.".config/hypr/hyprpaper.conf".source = ./etc/hyprpaper.conf;
   wayland.windowManager.hyprland = {
     enable = true;
+    configType = "lua";
+    extraConfig = # Lua
+      ''
+        hl.bind(mod .. "Space", hl.dsp.exec_cmd("${pkgs.rofi}/bin/rofi -show drun"))
+        hl.bind(mod .. "Return", hl.dsp.exec_cmd("${pkgs.ghostty}/bin/ghostty"))
+        hl.bind(mod .. "SHIFT + Return", hl.dsp.exec_cmd("${pkgs.firefox}/bin/firefox"))
+
+        hl.bind(mod .. "Q", hl.dsp.window.close())
+        hl.bind(mod .. "ALT + Q", hl.dsp.exit())
+        hl.bind(mod .. "S", hl.dsp.window.float({action = "toggle"}))
+        hl.bind(mod .. "F", hl.dsp.window.fullscreen({action = "toggle"}))
+        hl.bind(mod .. "SHIFT + F", hl.dsp.window.fullscreen_state({internal = 0, client = 3}))
+        hl.bind(mod .. "H", hl.dsp.workspace.toggle_special())
+
+        hl.bind(mod .. "SHIFT + left", hl.dsp.window.swap({direction = "left"}))
+        hl.bind(mod .. "SHIFT + right", hl.dsp.window.swap({direction = "right"}))
+        hl.bind(mod .. "SHIFT + up", hl.dsp.window.swap({direction = "up"}))
+        hl.bind(mod .. "SHIFT + down", hl.dsp.window.swap({direction = "down"}))
+
+        hl.bind(mod .. "left",  hl.dsp.focus({direction = "left"}))
+        hl.bind(mod .. "right", hl.dsp.focus({direction = "right"}))
+        hl.bind(mod .. "up",    hl.dsp.focus({direction = "up"}))
+        hl.bind(mod .. "down",  hl.dsp.focus({direction = "down"}))
+
+        for i = 1, 10, 1 do
+          hl.bind(mod .. (i % 10),  hl.dsp.focus({workspace = i}))
+        end
+
+        for i = 1, 10, 1 do
+          hl.bind(mod .. "SHIFT + ".. (i % 10),  hl.dsp.window.move({workspace = i, follow = false}))
+        end
+
+        hl.bind(mod .. "mouse:272", hl.dsp.window.drag())
+        hl.bind(mod .. "mouse:273", hl.dsp.window.resize())
+
+
+        hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("${pkgs.wireplumber}/bin/wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 1%+"), {repeating = true})
+        hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("${pkgs.wireplumber}/bin/wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 1%-"), {repeating = true})
+
+        hl.bind("XF86MonBrightnessUp",   hl.dsp.exec_cmd("${pkgs.brightnessctl}/bin/brightnessctl set +5%"), {repeating = true})
+        hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("${pkgs.brightnessctl}/bin/brightnessctl set 5%-"), {repeating = true})
+
+        hl.window_rule({
+          name = "Bitwarden",
+          match = {
+            title = "^Bitwarden$"
+          },
+          workspace = "special"
+        })
+
+        hl.window_rule({
+          name = "Proton VPN",
+          match = {
+            title = "^Proton VPN$"
+          },
+          workspace = "special",
+          size = {800, 600}
+        })
+
+        -- "SUPER + ALT, left, layoutmsg, preselect l"
+        -- "SUPER + ALT, right, layoutmsg, preselect r"
+        -- "SUPER + ALT, up, layoutmsg, preselect u"
+        -- "SUPER + ALT, down, layoutmsg, preselect d"
+
+        hl.on("hyprland.start", (function()
+          hl.exec_cmd("${pkgs.hyprpaper}/bin/hyprpaper")
+          hl.exec_cmd("${pkgs.bitwarden-desktop}/bin/bitwarden")
+          hl.exec_cmd("${pkgs.proton-vpn}/bin/protonvpn-app")
+          hl.exec_cmd("${pkgs.wlsunset}/bin/wlsunset -l 51.5 -L -0.1")
+        end))
+
+        hl.curve("quick", { type = "bezier", points = {{0.15, 0}, {0.1, 1}}})
+        hl.animation({
+          leaf = "windowsMove",
+          enabled = false
+        })
+        hl.animation({
+          leaf = "windowsIn",
+          enabled = true,
+          speed = 1,
+          bezier = "quick"
+        })
+        hl.animation({
+          leaf = "workspaces",
+          enabled = true,
+          speed = 1,
+          bezier = "quick"
+        })
+
+        -- Lid switch handling: when the lid closes, move all workspaces to an
+        -- external monitor (if one exists) and disable the laptop display.
+        -- When the lid reopens, re-enable the laptop display.
+        -- DPMS is dispatched via a timer to avoid undefined behaviour (per docs).
+        local laptop_monitor = "eDP-1"
+
+        hl.bind("switch:on:Lid Switch", function()
+          -- Find the first available external monitor
+          local monitors = hl.get_monitors()
+          local target = nil
+          for _, m in ipairs(monitors) do
+            if m.name ~= laptop_monitor then
+              target = m.name
+              break
+            end
+          end
+          -- Move all workspaces to the external monitor
+          if target then
+            local workspaces = hl.get_workspaces()
+            for _, ws in ipairs(workspaces) do
+              hl.dispatch(hl.dsp.workspace.move({ workspace = ws.id, monitor = target }))
+            end
+          end
+          -- Turn off the laptop screen
+          hl.timer(function()
+            hl.dispatch(hl.dsp.dpms({ action = "disable", monitor = laptop_monitor }))
+          end, { timeout = 500, type = "oneshot" })
+        end)
+
+        hl.bind("switch:off:Lid Switch", function()
+          -- Turn the laptop screen back on
+          hl.timer(function()
+            hl.dispatch(hl.dsp.dpms({ action = "enable", monitor = laptop_monitor }))
+          end, { timeout = 500, type = "oneshot" })
+        end)
+      '';
     settings = {
-      monitor = [
-        "eDP-1,highres,auto-down,1"
-        ",2560x1440,auto-up,1"
-      ];
-      general = {
-        gaps_out = 10;
-        layout = "dwindle";
+      mod = {
+        _var = "SUPER + ";
       };
-      dwindle = {
-        preserve_split = true;
-        pseudotile = true;
-      };
-      decoration = {
-        rounding = 2;
-
-        blur = {
-          enabled = true;
-          size = 3;
-          passes = 1;
+      config = {
+        general = {
+          gaps_out = 10;
+          layout = "dwindle";
         };
+        decoration = {
+          rounding = 2;
 
-        shadow = {
-          enabled = true;
-          range = 4;
-          render_power = 3;
-          color = "rgba(1a1a1aee)";
+          blur = {
+            enabled = true;
+            size = 3;
+            passes = 1;
+          };
+
+          shadow = {
+            enabled = true;
+            range = 4;
+            render_power = 3;
+            color = "rgba(1a1a1aee)";
+          };
         };
-
+        dwindle = {
+          preserve_split = true;
+        };
       };
-      "$mainMod" = "SUPER";
-      "$secondMod" = "SUPER + SHIFT";
-      animation = [
-        "windowsMove,0" # Don't animate moving windows - it's annoying
-        "windowsIn,1,1,default" # Start window creation faster
-        "workspaces,1,1,default"
-      ];
-      bind = [
-        "$mainMod, Return, exec, ${pkgs.ghostty}/bin/ghostty"
-        "$secondMod, Return, exec, ${pkgs.firefox}/bin/firefox"
-        "$mainMod, Space, exec, ${pkgs.rofi-wayland}/bin/rofi -show drun" # WOFI?
-        "$mainMod, Q, killactive, "
-        "SUPER + ALT, Q, exit, "
-        "$mainMod, S, togglefloating"
-        "$mainMod, F, fullscreen"
-        "$secondMod, F, fullscreenstate, 0 3"
-        "$mainMod, T, togglesplit" # dwindle
-
-        "$mainMod, left, movefocus, l"
-        "$mainMod, right, movefocus, r"
-        "$mainMod, up, movefocus, u"
-        "$mainMod, down, movefocus, d"
-
-        "SUPER + ALT, left, layoutmsg, preselect l"
-        "SUPER + ALT, right, layoutmsg, preselect r"
-        "SUPER + ALT, up, layoutmsg, preselect u"
-        "SUPER + ALT, down, layoutmsg, preselect d"
-        "$mainMod, H, togglespecialworkspace"
-        "$secondMod, H, movetoworkspacesilent, special"
-
-        "$mainMod, 1, workspace, 1"
-        "$mainMod, 2, workspace, 2"
-        "$mainMod, 3, workspace, 3"
-        "$mainMod, 4, workspace, 4"
-        "$mainMod, 5, workspace, 5"
-        "$mainMod, 6, workspace, 6"
-        "$mainMod, 7, workspace, 7"
-        "$mainMod, 8, workspace, 8"
-        "$mainMod, 9, workspace, 9"
-        "$mainMod, 0, workspace, 10"
-
-        "$mainMod SHIFT, 1, movetoworkspacesilent, 1"
-        "$mainMod SHIFT, 2, movetoworkspacesilent, 2"
-        "$mainMod SHIFT, 3, movetoworkspacesilent, 3"
-        "$mainMod SHIFT, 4, movetoworkspacesilent, 4"
-        "$mainMod SHIFT, 5, movetoworkspacesilent, 5"
-        "$mainMod SHIFT, 6, movetoworkspacesilent, 6"
-        "$mainMod SHIFT, 7, movetoworkspacesilent, 7"
-        "$mainMod SHIFT, 8, movetoworkspacesilent, 8"
-        "$mainMod SHIFT, 9, movetoworkspacesilent, 9"
-        "$mainMod SHIFT, 0, movetoworkspacesilent, 10"
-
-        "$secondMod, left, movewindow, l"
-        "$secondMod, right, movewindow, r"
-        "$secondMod, up, movewindow, u"
-        "$secondMod, down, movewindow, d"
-
-        ", XF86AudioMute, exec, ${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-      ];
-
-      bindm = [
-        # Move/resize windows with mainMod + LMB/RMB and dragging
-        "$mainMod, mouse:272, movewindow"
-        "$mainMod, mouse:273, resizewindow"
-      ];
-      binde = [
-        ", XF86AudioRaiseVolume, exec, ${pkgs.wireplumber}/bin/wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 1%+"
-        ", XF86AudioLowerVolume, exec, ${pkgs.wireplumber}/bin/wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 1%-"
-        ", XF86MonBrightnessUp,exec,${pkgs.brightnessctl}/bin/brightnessctl set +5%"
-        ", XF86MonBrightnessDown,exec,${pkgs.brightnessctl}/bin/brightnessctl set 5%-"
-      ];
-      bindl = [
-        # trigger when the switch is toggled
-        ", switch:Lid Switch, exec, swaylock"
-        # trigger when the switch is turning on
-        ", switch:on:Lid Switch, exec, hyprctl keyword monitor \"eDP-1, disable\""
-        # trigger when the switch is turning off
-        ", switch:off:Lid Switch, exec, hyprctl keyword monitor \"eDP-1,highres,auto,1\""
-      ];
-
-      windowrulev2 = [
-        "workspace special, title:^Bitwarden$"
-        "workspace special, title:^Proton VPN$"
-        "size 800 600, title:^Proton VPN$"
-      ];
-      exec-once = [
-        "${pkgs.hyprpaper}/bin/hyprpaper"
-        "${pkgs.bitwarden}/bin/bitwarden"
-        "${pkgs.protonvpn-gui}/bin/protonvpn-app"
-        "${pkgs.wlsunset}/bin/wlsunset -l 51.5 -L -0.1"
-      ];
+      monitor = {
+        output = "eDP-1";
+        mode = "2256x1504@60.00Hz";
+        scale = 1;
+      };
     };
   };
 }

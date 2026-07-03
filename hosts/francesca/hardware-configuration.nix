@@ -24,6 +24,7 @@
   ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
+  boot.kernelParams = [ "boot_delay=1000" ];
   boot.extraModulePackages = [ ];
 
   swapDevices = [

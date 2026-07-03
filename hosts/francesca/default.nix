@@ -31,19 +31,17 @@
 
   #Desktop Env
   services = {
+    desktopManager.gnome.enable = true;
+    displayManager = {
+      gdm.enable = true;
+      defaultSession = "hyprland";
+    };
     xserver = {
       xkb = {
         variant = "";
         layout = "us";
       };
-      displayManager = {
-        gdm.enable = true;
-      };
-      desktopManager.gnome.enable = true;
       wacom.enable = true;
-    };
-    displayManager = {
-      defaultSession = "hyprland";
     };
     libinput = {
       enable = true;
@@ -73,7 +71,7 @@
   # Configure console keymap
   console.keyMap = "us";
 
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;

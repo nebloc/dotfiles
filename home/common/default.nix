@@ -20,7 +20,7 @@
     config = {
       allowUnfree = true;
       allowUnfreePredicate = (_: true);
-      permittedInsecurePackages = [ "electron-25.9.0" ]; # For obsidian
+      permittedInsecurePackages = [ "electron-39.8.10" ]; # For obsidian
     };
     overlays = [
       outputs.overlays.unstable-packages
@@ -43,10 +43,12 @@
 
   programs.git = {
     enable = true;
-    userName = "Ben Coleman";
-    userEmail = "benjamin.coleman@me.com";
-    extraConfig = {
+    settings = {
+      user.name = "Ben Coleman";
+      user.email = "benjamin.coleman@me.com";
       init.defaultBranch = "main";
+      diff.tool = "nvimdiff";
+      difftool.prompt = false;
     };
   };
 

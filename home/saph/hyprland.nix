@@ -123,7 +123,7 @@
       ];
       exec-once = [
         "${pkgs.hyprpaper}/bin/hyprpaper"
-        "${pkgs.bitwarden}/bin/bitwarden"
+        "${pkgs.bitwarden-desktop}/bin/bitwarden"
         "${pkgs.protonvpn-gui}/bin/protonvpn-app"
         "${pkgs.wlsunset}/bin/wlsunset -l 51.5 -L -0.1"
       ];

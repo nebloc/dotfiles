@@ -30,6 +30,7 @@ in
   # Allow unfree packages
   nixpkgs = {
     config.allowUnfree = true;
+    config.permittedInsecurePackages = [ "electron-39.8.10" ]; # For obsidian
     overlays = [
       outputs.overlays.modifications
       outputs.overlays.unstable-packages
@@ -62,14 +63,16 @@ in
     neovim
     firefox
     git
+    jujutsu
     kitty
     ghostty
-    bitwarden
+    bitwarden-desktop
     nemo
+    btop
 
     # Proton
     protonmail-bridge
-    unstable.protonvpn-gui
+    unstable.proton-vpn
 
     # Tools
     xtitle # needed to display xwindow names

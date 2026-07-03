@@ -13,6 +13,6 @@
         padding = 0;
     };
     theme = "./theme.rasi";
-    package = pkgs.rofi-wayland;
+    package = pkgs.rofi;
   };
 }

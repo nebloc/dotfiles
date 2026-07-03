@@ -6,15 +6,15 @@
     # example = prev.example.overrideAttrs (oldAttrs: rec {
     # ...
     # });
-    neovim = inputs.nixvim-flake.packages.${final.system}.default;
-    nfi = inputs.nfi-flake.packages.${final.system}.default;
+    neovim = inputs.nixvim-flake.packages.${final.stdenv.hostPlatform.system}.default;
+    nfi = inputs.nfi-flake.packages.${final.stdenv.hostPlatform.system}.default;
   };
 
   # When applied, the unstable nixpkgs set (declared in the flake inputs) will
   # be accessible through 'pkgs.unstable'
   unstable-packages = final: _prev: {
     unstable = import inputs.nixpkgs-unstable {
-      system = final.system;
+      system = final.stdenv.hostPlatform.system;
       config.allowUnfree = true;
     };
   };
