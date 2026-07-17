@@ -230,7 +230,7 @@
         modules-left = ["hyprland/workspaces"];
         modules-center = ["hyprland/window"];
         modules-right = ["battery" "cpu" "memory" "pulseaudio" "tray" "clock"];
-        "hyprland/workspaces" = {
+        "hyprland/workspaces" = { # https://github.com/Alexays/Waybar/issues/5008
           active-only = "false";
           on-click = "activate";
           format="{name}";
