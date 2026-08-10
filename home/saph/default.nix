@@ -36,8 +36,6 @@
     # media
     unstable.cava
     discord
-    # TODO: find out if cider has a replacement?
-    # cider
     cider-2
     calibre
     vlc
