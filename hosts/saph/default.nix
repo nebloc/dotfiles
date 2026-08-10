@@ -23,6 +23,15 @@
     ];
   };
 
+  # Saph has no swap partition. open-webui is unfree, so it is never in the
+  # binary cache and its npm frontend build gets OOM-killed without swap.
+  swapDevices = [
+    {
+      device = "/var/lib/swapfile";
+      size = 16 * 1024; # MiB
+    }
+  ];
+
   networking = {
     hostName = "saph"; # Define your hostname.
     networkmanager.enable = true;
@@ -50,22 +59,21 @@
 
   #Desktop Env
   services = {
+    desktopManager.gnome.enable = true;
+    displayManager = {
+      gdm.enable = true;
+      defaultSession = "hyprland";
+    };
     xserver = {
       wacom.enable = true;
       enable = true;
       xkb.layout = "us";
-      displayManager = {
-        gdm.enable = true;
-      };
-      desktopManager.gnome.enable = true;
-    };
-    displayManager = {
-      defaultSession = "hyprland";
     };
     ollama = {
+      # `acceleration` is deprecated; pick the accelerated package instead.
+      # RX 6800 XT -> ROCm.
       enable = true;
-      acceleration = "rocm";
-      package = pkgs.unstable.ollama;
+      package = pkgs.unstable.ollama-rocm;
     };
     open-webui = {
       enable = true;
@@ -114,6 +122,7 @@
 
   programs.nm-applet.enable = true;
 
+  environment.sessionVariables.NIXOS_OZONE_WL = "1"; # Make electron work w/ Wayland
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
