@@ -23,6 +23,15 @@
     ];
   };
 
+  # Saph has no swap partition. open-webui is unfree, so it is never in the
+  # binary cache and its npm frontend build gets OOM-killed without swap.
+  swapDevices = [
+    {
+      device = "/var/lib/swapfile";
+      size = 16 * 1024; # MiB
+    }
+  ];
+
   networking = {
     hostName = "saph"; # Define your hostname.
     networkmanager.enable = true;
@@ -61,9 +70,10 @@
       xkb.layout = "us";
     };
     ollama = {
+      # `acceleration` is deprecated; pick the accelerated package instead.
+      # RX 6800 XT -> ROCm.
       enable = true;
-      acceleration = "rocm";
-      package = pkgs.unstable.ollama;
+      package = pkgs.unstable.ollama-rocm;
     };
     open-webui = {
       enable = true;

@@ -36,7 +36,6 @@
     # media
     unstable.cava
     discord
-    cider-2
     calibre
     vlc
 
