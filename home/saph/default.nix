@@ -2,17 +2,14 @@
 
 {
 
-  imports =
-    [ 
-      ./hyprland.nix
-      ./ghostty.nix
-      ../common
-    ];
-
+  imports = [
+    ./hyprland.nix
+    ../common
+  ];
 
   home.stateVersion = "23.05"; # Please read the comment before changing.
 
-  # fonts.fontconfig.enable = true;
+  fonts.fontconfig.enable = true;
 
   home.packages = with pkgs; [
     thunderbird
@@ -27,18 +24,21 @@
 
     # work
     libreoffice
-    obsidian
+    unstable.obsidian
     slack
 
     # dev
+    direnv
     go
     git
     vscode
 
     # media
-    cava
+    unstable.cava
     discord
-    cider
+    # TODO: find out if cider has a replacement?
+    # cider
+    cider-2
     calibre
     vlc
 
@@ -79,11 +79,10 @@
     };
   };
   #  ------   -----------
-  # | DP   | |  DP 2     |
-  # |  3   | |           |
+  # | DP-2 | |  DP-1     |
+  # |      | |           |
   # |      |  -----------
   #  ------
-  # TODO: Add monitor config
   programs.mangohud = {
     enable = true;
   };
